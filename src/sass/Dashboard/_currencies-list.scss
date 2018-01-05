@@ -1,0 +1,37 @@
+.currencies-select {
+  display: -webkit-flex;
+  display: -ms-flex;
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+  
+  select {
+    cursor: pointer;
+  }
+  
+  .form-group {
+    margin: 0;
+  }
+  
+  > div {
+    &:first-child {
+      flex: 1;
+    }
+    
+    &:last-child {
+      padding-left: 20px;
+    }
+  }
+}
+
+#biller_category {
+  cursor: pointer;
+}
+
+.form-group-title {
+  margin-bottom: 15px;
+  font-family: $dosis;
+  font-size: 18px;
+  font-weight: bold;
+  letter-spacing: 1px;
+}

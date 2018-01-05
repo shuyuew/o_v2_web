@@ -1,0 +1,98 @@
+.orobo-user {
+  position: relative;
+  
+  &__password-change {
+    position: absolute;
+    top: -30px;
+    right: -30px;
+    
+    a {
+      text-decoration: none;
+      font-size: 12px;
+      text-transform: uppercase;
+      color: #525a63;
+      background-color: darken($white, 5%);
+      font-weight: bold;
+      padding: 5px 15px;
+      border-radius: 2px;
+      border: 1px solid darken($white, 10%);
+      transition: all 0.3s ease;
+      
+      &:hover {
+        background-color: darken($white, 10%);
+      }
+    }  
+  }
+  
+  &__full {
+    display: -webkit-flex;
+    display: -ms-flex;
+    display: flex;
+    align-items: baseline;
+    border-bottom: 1px solid #e6e6e6;
+    padding-bottom: 20px;
+    margin-bottom: 35px;
+    flex-wrap: wrap;
+    
+    > span {
+      img {
+        border-radius: 2px;
+      }
+      &:first-of-type {
+        margin-right: 10px;
+      }
+      &:nth-child(2) {
+        font-size: 30px;
+        font-family: $dosis;
+        font-weight: bold;
+        letter-spacing: 1px;
+      }
+    }
+  }
+  
+  .list-item {
+    padding: 15px;
+    background-color: darken(#fff, 2%);
+    border-radius: 2px;
+    border: 1px solid darken(#fff, 5%);
+    display: -webkit-flex;
+    display: -ms-flex;
+    display: flex;
+    align-items: center;
+    
+    .add-card {
+      margin-left: auto;
+      padding-left: 20px;
+      
+      a {
+        display: inline-block;
+        text-decoration: none;
+        background-color: darken($green, 20%);
+        color: $white;
+        border-radius: 2px;
+        padding: 10px 15px;
+        font-family: $dosis;
+        font-weight: bold;
+        transition: all 0.3s ease;
+        
+        &:hover {
+          background-color: darken($green, 25%);
+        }
+      }
+    }
+    
+    .user-label {
+      font-weight: bold;
+      text-transform: uppercase;
+      font-size: 20px;
+      font-family: $dosis;
+      letter-spacing: 1px;
+      margin-bottom: 5px;
+    }
+    
+    &:not(:last-of-type) {
+      margin-bottom: 30px;
+    }
+  }
+  
+}

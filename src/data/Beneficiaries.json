@@ -1,0 +1,42 @@
+[
+  {
+    "first_name": "John",
+    "last_name": "Doe",
+    "settlement": "Cash Pickup",
+    "country": {
+      "flag": "http://fakeimg.pl/30x20/ededed/27a6df",
+      "country_name": "Country Name",
+      "country_code": "NGN"
+    }
+  },
+  {
+    "first_name": "Ben",
+    "last_name": "Doe",
+    "settlement": "ATM withdrawl",
+    "country": {
+      "flag": "http://fakeimg.pl/30x20/ededed/27a6df",
+      "country_name": "Country Name",
+      "country_code": "NGN"
+    }
+  },
+  {
+    "first_name": "Kevin",
+    "last_name": "Doe",
+    "settlement": "ATM withdrawl",
+    "country": {
+      "flag": "http://fakeimg.pl/30x20/ededed/27a6df",
+      "country_name": "Country Name",
+      "country_code": "NGN"
+    }
+  },
+  {
+    "first_name": "Omar",
+    "last_name": "Doe",
+    "settlement": "Cash Pickup",
+    "country": {
+      "flag": "http://fakeimg.pl/30x20/ededed/27a6df",
+      "country_name": "Country Name",
+      "country_code": "NGN"
+    }
+  }
+]

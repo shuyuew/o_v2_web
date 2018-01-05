@@ -1,0 +1,36 @@
+.method-collection {
+  select {
+    cursor: pointer;
+  }
+
+  label {
+    font-size: 14px;
+    text-transform: uppercase;
+    font-family: $dosis;
+    font-weight: bold;
+    cursor: pointer;
+    display: inline-block;
+  }
+  
+  .form-group > label {
+    margin-bottom: 8px;
+  }
+}
+
+.method-select {
+  display: -webkit-flex;
+  display: -ms-flex;
+  display: flex;
+  align-items: center;
+  
+  select {
+    cursor: pointer;
+  }
+  
+  > div {
+    &:last-of-type {
+      padding-left: 20px;
+      flex: 1;
+    }
+  }
+}

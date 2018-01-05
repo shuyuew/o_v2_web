@@ -1,0 +1,205 @@
+$box-radius: 5px;
+$input-border: #49b7de;
+$registration-head: #25a5de;
+
+.orobo-box {
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 15px;
+  display: -webkit-flex;
+  display: -ms-flex;
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+  z-index: 5;
+  
+  > div {
+    border-radius: $box-radius;
+    background-color: $primary;
+    padding: 60px 30px 23px;
+    color: $white;
+    position: relative;
+  }
+  
+  &__welcome {
+    padding-bottom: 40px;
+    
+    span {
+      display: block;
+      line-height: 1.4;
+      font-size: 18px;
+      
+      &:first-of-type {
+        font-size: 24px;
+        color: $registration-head;
+      }
+    }
+  }
+  
+  &__smiley {
+    margin-bottom: 55px;
+    
+    img {
+      max-width: 50%;
+    }
+  }
+  
+  &__cta {
+    display: -webkit-flex;
+    display: -ms-flex;
+    display: flex;
+    padding-top: 45px;
+    
+    > div {
+      &:nth-of-type(2) {
+        margin-left: auto;
+      }
+    }
+    
+    a {
+      color: #59b3eb;
+      text-decoration: none;
+    }
+  }
+  
+  .form-group {
+    margin-bottom: 40px;
+  }
+  
+  input[type="text"],
+  input[type="password"],
+  input[type="email"],
+  input[type="number"] {
+    background-color: transparent;
+    border-color: $input-border;
+    border-radius: 0;
+    padding-top: 0;
+    border-top: none;
+    color: $white;
+  }
+  
+  button[type="submit"] {
+    width: 100%;
+    color: $black;
+    border-radius: 3px;
+    cursor: pointer;
+    height: 70px;
+    font-size: 18px;
+    background-color: $green;
+  }
+  
+  
+  &--titlebox {
+    > div {
+      padding: 0;
+      border-radius: 10px;
+      overflow: hidden;
+      position: relative;
+    }
+    
+    .orobo-box__form {
+      padding: 0 23px 23px;
+    }
+    
+    .orobo-box__cta {
+      padding: 0 23px 23px;
+    }
+  }
+  
+  &__head {
+    padding: 45px 15px;
+    background-color: $registration-head;
+    position: relative;
+    color: #205472;
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 45px;
+    
+    &:before {
+      content: '';
+      position: absolute;
+      left: 50%;
+      top: 100%;
+      transform: translateX(-50%);
+      width: 0; 
+      height: 0; 
+      border-left: 20px solid transparent;
+      border-right: 20px solid transparent;
+      border-top: 20px solid $registration-head;
+    }
+  }
+  
+  .phone-group {
+    display: -webkit-flex;
+    display: -ms-flex;
+    display: flex;
+    margin-bottom: 40px;
+    border: 1px solid $input-border;
+    border-top: none;
+    padding: 0.375rem 0.75rem;
+    padding-top: 0;
+    flex-wrap: wrap;
+    
+    &__select {
+      position: relative;
+      
+      &:before {
+        content: '';
+        position: absolute;
+        right: 7px;
+        top: 7px;
+        border-left: 5px solid transparent;
+        border-right: 5px solid transparent;
+        border-top: 5px solid #1a92b7;
+        pointer-events: none;
+      }
+    }
+    
+    select {
+      width: 100%;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      -ms-appearance: none;
+      appearance: none;
+      background-color: transparent;
+      border-radius: 0;
+      padding: 0;
+      border: none;
+      cursor: pointer;
+      color: #799fb3;
+    }
+    
+    > div {
+      flex: 0 1 100%;
+      
+      &:not(:first-of-type) {
+        margin-top: 10px;
+      }
+      
+      @media only screen and (min-width: 500px) {
+        flex: 1;
+        margin-top: 0 !important;
+        
+        &.phone-group__input {
+          flex-grow: 2;
+        }
+      }
+    }
+    
+    input {
+      border: none;
+      width: 100%;
+      padding-bottom: 0;
+      padding-left: 0;
+      font-size: 13px;
+      
+      @media only screen and (min-width: 500px) {
+        padding-left: 0.75rem;
+        padding-right: 0.75rem;
+      }
+    }
+  }
+  
+}

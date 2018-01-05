@@ -1,0 +1,127 @@
+.exchange-rate {
+  position: relative;
+  
+  select {
+    cursor: pointer;
+  }
+  
+  label {
+    font-size: 14px;
+    text-transform: uppercase;
+    font-family: $dosis;
+    font-weight: bold;
+    margin-bottom: 5px;
+    display: inline-block;
+    cursor: pointer;
+  }
+  
+  &__switch {
+    text-align: right;
+    margin-bottom: 15px;
+    
+    button {
+      appearance: none;
+      padding: 10px 15px;
+      text-transform: uppercase;
+      border-radius: 3px;
+      border: none;
+      background-color: transparent;
+      background-color: #29c5ff;
+      color: #fff;
+      font-size: 12px;
+      font-family: $dosis;
+      font-weight: bold;
+      transition: all 0.3s ease;
+      cursor: pointer;
+      
+      i {
+        margin-left: 8px;
+      }
+      
+      &:hover {
+        background-color: darken(#29c5ff, 10%);
+      }
+    }
+  }
+  
+  &__currencies {
+    > div {
+      margin-bottom: 25px;
+      
+      > div {
+        display: -webkit-flex;
+        display: -ms-flex;
+        display: flex;
+        align-items: center;
+        
+        span {
+          flex: 0 1 50px;
+          padding-left: 15px;
+        }
+      }
+    }
+  }
+  
+  &__result {
+    display: -webkit-flex;
+    display: -ms-flex;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    
+    > div {
+      margin-bottom: 20px;
+      padding: 0 5px;
+      flex: 0 1 50%;
+      
+      span {
+        display: block;
+        
+        &:first-of-type {
+          letter-spacing: 1px;
+          text-transform: uppercase;
+          font-size: 14px;
+          font-family: $dosis;
+          font-weight: bold;
+          margin-bottom: 5px;
+        }
+      }
+    }
+  }
+  
+  &__amount {
+    display: -webkit-flex;
+    display: -ms-flex;
+    display: flex;
+    align-items: center;
+    margin-bottom: 25px;
+    
+    label {
+      padding-right: 15px;
+    }
+  }
+  
+  &__submit {
+    button {
+      appearance: none;
+      width: 100%;
+      padding: 15px 20px;
+      border-radius: 2px;
+      border: none;
+      color: #fff;
+      background-color: #17e01c;
+      transition: all 0.3s ease;
+      font-family: $dosis;
+      font-weight: bold;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      font-size: 16px;
+      cursor: pointer;
+      
+      &:hover {
+        background-color: darken(#17e01c, 5%);
+      }
+    }
+  }
+  
+}

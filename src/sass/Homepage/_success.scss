@@ -1,0 +1,75 @@
+.orobo-box {
+
+  &__message {
+    padding: 30px 0 50px 0;
+    
+    span {
+      display: block;
+      
+      &:first-of-type {
+        color: #3ac5ef;
+        font-family: $dosis;
+        font-size: 25px;
+        font-weight: bold;
+        font-size: 75px;
+      }
+      &:nth-of-type(2) {
+        padding: 7px 0;
+      }
+      &:last-of-type {
+        font-family: $dosis;
+        font-weight: bold;
+        color: #3ac5ef;
+        font-size: 37px;
+      }
+    }
+  }
+  
+  &__info-cta {
+    padding-bottom: 20px;
+    
+    a {
+      text-decoration: none;
+      color: #a5adb5;
+      font-family: $dosis;
+      font-weight: bold;
+    }
+  }
+  
+  &__success-cta {
+    display: -webkit-flex;
+    display: -ms-flex;
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 30px;
+    
+    > div {
+      width: 49%;
+      
+      &:first-of-type {
+        a {
+          background-color: #3abdef;
+        }
+      }
+      
+      &:last-of-type {
+        a {
+          background-color: #6be66b;  
+        }
+      }
+      
+      a {
+        text-align: center;
+        font-family: $dosis;
+        font-weight: bold;
+        border-radius: 2px;
+        color: #292929;
+        display: block;
+        text-decoration: none;
+        height: 70px;
+        line-height: 70px;
+      }
+    }
+  }
+  
+}

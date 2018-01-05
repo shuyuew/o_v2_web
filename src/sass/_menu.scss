@@ -1,0 +1,80 @@
+.orobo-menu {
+  position: absolute;
+  background-color: transparent;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 1;
+  transition: all 0.3s ease;
+  
+  &__wrapper {
+    transition: all 0.3s ease;
+    max-width: 450px;
+    height: 100vh;
+    background-color: $primary;
+    overflow: auto;
+    position: relative;
+    z-index: 2;
+    box-shadow: 4 px 0 15px rgba(0,0,0,0.20);
+    transform: translateX(-100%);
+    
+    > div {
+      padding: 30px;
+    }
+  }
+  
+  &__links {
+    a {
+      margin-bottom: 20px;
+      text-decoration: none;
+      color: #29c5ff;
+      display: -webkit-flex;
+      display: -ms-flex;
+      display: flex;
+      
+      span {
+        &:first-of-type {
+          padding-right: 7px;
+        }
+      }
+    }
+  }
+  
+  &__logo {
+    margin-bottom: 30px;
+  }
+  
+  &__burger {
+    z-index: 1;
+    position: absolute;
+    left: 15px;
+    top: 30px;
+    width: 50px;
+    height: 35px;
+    display: -webkit-flex;
+    display: -ms-flex;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    cursor: pointer;
+    
+    span {
+      display: block;
+      width: 100%;
+      height: 5px;
+      background-color: #21a5de;
+    }
+  }
+  
+  
+  &.active {
+    z-index: 50;
+    background-color: rgba(0,0,0,0.5);
+    
+    .orobo-menu__wrapper {
+      transform: translateX(0);
+    }
+  }
+  
+}

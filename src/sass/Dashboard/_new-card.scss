@@ -1,0 +1,53 @@
+.new-card {
+  button[type="submit"] {
+    appearance: none;
+    width: 100%;
+    border-radius: 3px;
+    border: none;
+    cursor: pointer;
+    padding: 15px;
+    color: $white;
+    font-family: $dosis;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 18px;
+    background-color: darken($green, 20%);
+    transition: all 0.3s ease;
+    
+    &:hover {
+      background-color: darken($green, 25%);
+    }
+  }
+  
+  .form-group {
+    > label {
+      display: block;
+      cursor: pointer;
+      text-transform: uppercase;
+      font-family: $dosis;
+      font-weight: bold;
+    }
+    
+    .form-control {
+      padding: 20px 10px;
+      margin-top: 10px;
+    }
+  }
+}
+
+.column-form {
+  display: -webkit-flex;
+  display: -ms-flex;
+  display: flex;
+  align-items: center;
+  
+  > div {
+    padding: 0 5px;
+    flex:1;
+  }
+  
+  &--three {
+    margin-left: -5px;
+    margin-right: -5px;
+  }
+}

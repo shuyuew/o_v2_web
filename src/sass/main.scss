@@ -1,0 +1,50 @@
+@import "reset";
+@import "bootstrap/bootstrap";
+@import "fonts";
+@import "./FontAwesome/font-awesome";
+
+* {
+  box-sizing: border-box;
+}
+
+body, html {
+  min-height: 100%;
+}
+
+body {
+  -webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+  color: $black;
+  font-family: $open-sans;
+  background-color: #003142;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+.input-error {
+  padding-top: 10px;
+  font-size: 14px;
+  color: $red;
+  display: none;
+  
+  &.visible {
+    display: block;
+  }
+}
+
+
+
+// Global
+@import "./menu";
+
+// Homepage
+@import "./Homepage/background";
+@import "./Homepage/title";
+@import "./Homepage/box";
+@import "./Homepage/success";
+
+// dashboard
+@import "./Dashboard/dashboard";
