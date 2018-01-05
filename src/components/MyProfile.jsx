@@ -55,7 +55,7 @@ class MyProfile extends Component {
             <li className="list-item">
               <div>
                 <div className="user-label">Credit Card</div>
-                <div className="user-info">{UserData.card.payment_type ? UserData.card.payment_type : 'No card added'}</div>
+                <div className="user-info">{UserData.card ? UserData.card.payment_type : 'No card added'}</div>
               </div>
               
               <div className="add-card">
