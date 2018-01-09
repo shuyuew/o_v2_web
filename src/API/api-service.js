@@ -34,13 +34,15 @@ axios.interceptors.request.use(function (config) {
   
   // Encode query params on GET methods
   if (config.headers.token && config.params) {
-    let paramValue, keyValue;
+    let paramValue, keyValue, queryString = '', modifiedString;
     _.each(config.params, function (value, prop) { 
       paramValue = aesEncryptString(value, userData.api_access_token.decoded.iv, userData.api_access_token.decoded.key);
       keyValue = aesEncryptString(prop, userData.api_access_token.decoded.iv, userData.api_access_token.decoded.key);
-      
-      config.url = config.url + '?' + encodeURIComponent(keyValue) + '=' + encodeURIComponent(paramValue);
+      queryString += encodeURIComponent(keyValue) + '=' + encodeURIComponent(paramValue) + '&';
     });
+
+    modifiedString = queryString.slice(0, -1);
+    config.url = config.url + '?' + modifiedString;
 
     delete config.params;
   }
@@ -230,6 +232,58 @@ export default {
 
   recommendBiller: function(data) {
     return axios.post(CONFIG.SAVE_BILLER, data).then(function (response) {
+      return response;
+    }).catch(function (error) {
+      return error;
+    });
+  },
+
+  getActiveBillers: function(currencyid, categoryid, stateid) {
+    return axios.get(CONFIG.ACTIVE_BILLERS, { params: {
+      currency_id: currencyid,
+      bill_category_id: categoryid,
+      state_id: stateid
+    } }).then(function (response) {
+      return response;
+    }).catch(function (error) {
+      return error;
+    });
+  },
+
+  getMyBillers: function() {
+    return axios.get(CONFIG.MY_BILLERS).then(function (response) {
+      return response;
+    }).catch(function (error) {
+      return error;
+    });
+  },
+
+  listBillerBills: function(billerId) {
+    return axios.get(CONFIG.BILLER_BILLS, { params: { biller_id: billerId } }).then(function (response) {
+      return response;
+    }).catch(function (error) {
+      return error;
+    });
+  },
+
+  payBill: function(data) {
+    return axios.post(CONFIG.PAY_BILL, data).then(function (response) {
+      return response;
+    }).catch(function (error) {
+      return error;
+    });
+  },
+
+  cancelPayment: function(billid) {
+    return axios.post(CONFIG.CANCEL_BILL_PAYMENT, {id: billid, reason: ''}).then(function (response) {
+      return response;
+    }).catch(function (error) {
+      return error;
+    });
+  },
+
+  confirmPayment: function(billid) {
+    return axios.post(CONFIG.CONFIRM_FULFILLMENT, {id: billid}).then(function (response) {
       return response;
     }).catch(function (error) {
       return error;

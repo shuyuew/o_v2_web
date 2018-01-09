@@ -6,26 +6,24 @@ class Beneficiary extends Component {
   render() {
     
     const {
-      firstName,
-      lastName,
-      settlement,
-      flag,
-      countryCode
+      info,
+      selected,
+      selectBeneficiary
     } = this.props;
     
     return (
-      <div className="beneficiary">
+      <div className={selected.id === info.id ? 'beneficiary selected' : 'beneficiary'} onClick={() => { selectBeneficiary(info); }}>
         
         <div className="beneficiary__user">
-          <span>{firstName + ' ' + lastName}</span>
-          <span>{settlement}</span>
+          <span>{info.first_name + ' ' + info.last_name}</span>
+          <span>{info.settlement_channel.title}</span>
         </div>
         
         <div className="beneficiary__country">
           <span className="text-right">
-            <img src={CONFIG.IMAGE_URL + flag} alt={countryCode}/>
+            <img src={CONFIG.IMAGE_URL + info.country_currency.flag} alt={info.country_currency.currency_code}/>
           </span>
-          <span>Country code: {countryCode}</span>
+          <span>{info.country_currency.currency_code}</span>
         </div>
         
       </div>

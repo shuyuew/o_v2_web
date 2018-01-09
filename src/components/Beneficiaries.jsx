@@ -7,7 +7,11 @@ class Beneficiaries extends Component {
 
   render() {
     
-    const { list } = this.props;
+    const {
+      list,
+      beneficiarySelect,
+      beneficiary
+    } = this.props;
     
     return (
       <div className="orobo-beneficiaries">
@@ -17,11 +21,9 @@ class Beneficiaries extends Component {
           list.map((item) => (
             <Beneficiary
               key={item.id}
-              firstName={item.first_name}
-              lastName={item.last_name}
-              settlement={item.settlement_channel.title}
-              flag={item.country_currency.flag}
-              countryCode={item.country_currency.country_code} />
+              info={item}
+              selected={beneficiary}
+              selectBeneficiary={beneficiarySelect}/>
           ))
         }
     

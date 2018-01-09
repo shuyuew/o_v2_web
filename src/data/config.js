@@ -5,6 +5,8 @@ export default {
   API_BASE_URL: API_BASE_URL,
   BASE_URL: BASE_URL,
   IMAGE_URL: BASE_URL + 'img/flags/',
+  STRIPE_KEY: 'pk_test_QULFerT2MWbJyQqWZ0jNhsxn',
+  DUPHLUX_TOKEN: '29b9fb59e6c697ac5c5aa45bcdd028ae7ce1521d',
   
   // GET
   CURRENCIES_SENDING: API_BASE_URL + 'currencies/list_currencies/sending.json',
@@ -16,6 +18,9 @@ export default {
   BENEFICIRIES: API_BASE_URL + 'beneficiaries.json',
   TRANSFERS: API_BASE_URL + 'transfer_requests.json',
   BILL_PAYMENTS: API_BASE_URL + 'bills/list_bill_payments.json',
+  ACTIVE_BILLERS: API_BASE_URL + 'bills/list_billers.json',
+  MY_BILLERS: API_BASE_URL + 'bills/my_billers.json',
+  BILLER_BILLS: API_BASE_URL + 'bills/list_bills_by_biller.json',
   
   // POST/PUT
   REGISTER_USER: API_BASE_URL + 'users/add.json',
@@ -27,6 +32,9 @@ export default {
   SAVE_STRIPE_CARD: API_BASE_URL + 'users/save_stripe_card_customer.json',
   CALCULATE_FEE: API_BASE_URL + 'currencies/calculate_fee.json',
   NEW_BENEFICIARY: API_BASE_URL + 'beneficiaries/create.json',
+  PAY_BILL: API_BASE_URL + 'bills/pay.json',
+  CANCEL_BILL_PAYMENT: API_BASE_URL +  'bills/cancel.json',
+  CONFIRM_FULFILLMENT: API_BASE_URL + 'bills/confirm_fulfillment.json',
   
   // REGEXES
   EMAIL_REGEX: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,

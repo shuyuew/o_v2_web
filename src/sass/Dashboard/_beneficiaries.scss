@@ -76,6 +76,11 @@
   &:hover {
     background-color: darken(#fff, 5%);
   }
+
+  &.selected {
+    background-color: #29c5ff;
+    color: #fff !important;
+  }
   
   &:not(:last-of-type) {
     margin-bottom: 30px;

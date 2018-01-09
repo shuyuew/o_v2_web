@@ -45,12 +45,12 @@ class MyProfile extends Component {
               </div>
             </li>
             
-            <li className="list-item">
+            {/* <li className="list-item">
               <div>
                 <div className="user-label">Address</div>
                 <div className="user-info">{UserData.address ? UserData.address : 'Address not provided'}</div>
               </div>
-            </li>  
+            </li>   */}
             
             <li className="list-item">
               <div>

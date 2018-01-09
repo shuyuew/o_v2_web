@@ -1,0 +1,232 @@
+.pay-bills {
+  .no-billers {
+    margin-top: 20px;
+  }
+  
+  .previous-step {
+    appearance: none;
+    font-size: 12px;
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 2px;
+    text-transform: uppercase;
+    font-weight: bold;
+    border: 1px solid #e6e6e6;
+    background-color: #f2f2f2;
+    cursor: pointer;
+    transition: all 0.3s ease;
+
+    &:hover {
+      background-color: darken(#f2f2f2, 3%);
+    }
+  }
+
+  .step-title {
+    padding-top: 15px;
+    text-transform: uppercase;
+    font-family: $dosis;
+    font-weight: bold;
+    font-size: 18px;
+  }
+
+  .list-holder {
+    display: flex;
+    align-items: center;
+    margin-top: 20px;
+    background-color: #fafafa;
+    border-radius: 2px;
+    padding: 15px;
+    border: 1px solid #f2f2f2;
+    cursor: pointer;
+    transition: all 0.3s ease;
+
+    &:hover {
+      background-color: darken(#fafafa, 3%);
+    }
+
+    &.active-listing {
+      background-color: #29c5ff;
+      color: #ffffff;
+    }
+
+    img {
+      max-width: 45px;
+    }
+
+    > span {
+      &:first-of-type {
+        padding-right: 15px;
+      }
+
+      &:last-of-type {
+        margin-left: auto;
+      }
+    }
+  }
+
+  .biller-listings {
+    max-height: 300px;
+    overflow: auto;
+  }
+
+  .biller-filter {
+    margin-top: 20px;
+  }
+
+  .bill-details {
+    margin-top: 15px;
+
+    > div {
+      margin-bottom: 30px;
+    }
+
+    &__title {
+      font-weight: bold;
+      font-family: $dosis;
+      font-size: 16px;
+      margin-bottom: 15px;
+      padding: 10px 0;
+      border-bottom: 1px solid #e6e6e6;
+    }
+
+    select {
+      cursor: pointer;
+    }
+
+    label {
+      cursor: pointer;
+      font-size: 13px;
+      margin-bottom: 5px;
+      text-transform: uppercase;
+      display: inline-block;
+    }
+
+    &__information {
+      padding-bottom: 20px;
+    }
+
+    &__header {
+      color: #ffffff;
+      background-color: #29c5ff;
+      padding: 15px;
+      border-radius: 3px;
+
+      span {
+        display: block;
+        text-align: center;
+
+        &:first-of-type {
+          margin-bottom: 5px;
+          font-size: 20px;
+          font-family: $dosis;
+          font-weight: bold;
+        }
+      }
+    }
+
+    button[type="button"] {
+      appearance: none;
+      width: 100%;
+      border-radius: 3px;
+      border: none;
+      cursor: pointer;
+      padding: 15px;
+      color: $white;
+      font-family: $dosis;
+      font-weight: bold;
+      text-transform: uppercase;
+      font-size: 18px;
+      background-color: darken($green, 20%);
+      transition: all 0.3s ease;
+      
+      &:hover {
+        background-color: darken($green, 25%);
+      }
+    }
+  }
+
+  .confirm-payment {
+    button[type="submit"] {
+      appearance: none;
+      width: 100%;
+      border-radius: 3px;
+      border: none;
+      cursor: pointer;
+      padding: 15px;
+      color: $white;
+      font-family: $dosis;
+      font-weight: bold;
+      text-transform: uppercase;
+      font-size: 18px;
+      background-color: darken($green, 20%);
+      transition: all 0.3s ease;
+      
+      &:hover {
+        background-color: darken($green, 25%);
+      }
+    }
+  }
+
+}
+
+.confirm-payment {
+
+  &__exchange {
+    margin: 20px 0;
+    padding: 15px;
+    color: #ffffff;
+    background-color: #003142;
+    text-align: center;
+    font-size: 14px;
+  }
+
+  &__details {
+    > div {
+      margin-top: 20px;
+      background-color: #fafafa;
+      border: 1px solid #f2f2f2;
+      padding: 10px;
+    }
+  }
+
+  .details-title {
+    font-family: $dosis;
+    font-weight: bold;
+    margin-bottom: 5px;
+    font-size: 17px;
+  }
+
+  .details-info {
+    > span {
+      display: block;
+
+      &:nth-child(2) {
+        margin-top: 5px;
+        font-size: 14px;
+      }
+    }
+  }
+
+}
+
+.third-party {
+  margin-top: 30px;
+  margin-bottom: 30px;
+  background-color: #fafafa;
+  border: 1px solid #f2f2f2;
+  padding: 10px;
+
+  h5 {
+    font-weight: bold;
+    margin-bottom: 15px;
+    font-family: $dosis;
+    font-size: 17px;
+  }
+
+  label {
+    font-size: 15px;
+    display: inline-block;
+    margin-bottom: 5px;
+    cursor: pointer;
+  }
+}

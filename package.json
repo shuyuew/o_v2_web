@@ -44,6 +44,8 @@
     "npm": "^5.6.0",
     "prop-types": "^15.6.0",
     "react": "^16.1.1",
+    "react-bootstrap": "^0.31.3",
+    "react-confirm": "^0.1.0",
     "react-dom": "^16.1.1",
     "react-notification-system": "^0.2.16",
     "react-redux": "^5.0.6",

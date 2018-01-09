@@ -71,5 +71,15 @@
       }
     }
   }
+
+  &--bill-payment {
+    .orobo-box__message span:first-of-type {
+      font-size: 40px;
+    }
+
+    .orobo-box__message span:last-of-type {
+      font-size: 20px;
+    }
+  }
   
 }

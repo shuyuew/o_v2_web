@@ -17,6 +17,7 @@ class ExchangeRate extends Component {
       amount: 0,
       exchange_rate: null,
       fee: null,
+      direction: 1,
       receiving_amount: null,
       inProgress: false
     };
@@ -24,6 +25,12 @@ class ExchangeRate extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.currencyUpdate = this.currencyUpdate.bind(this);
     this.amountUpdate = this.amountUpdate.bind(this);
+    this.handleDirectionChange = this.handleDirectionChange.bind(this);
+  }
+
+
+  handleDirectionChange(e) {
+    this.setState({ direction: parseInt(e.target.value) });
   }
   
   
@@ -34,21 +41,23 @@ class ExchangeRate extends Component {
       sending_currency: this.state.sendingCurrency.id,
       receiving_currency: this.state.receivingCurrency.id,
       amount: parseInt(this.state.amount),
-      direction: 1
+      direction: this.state.direction
     }    
     
     this.setState({ inProgress: true });
-    
+    console.log(dataToSend);
     OroboAPI.calculateFee(dataToSend).then((response) => {
+      console.log(response);
       if (response.data.PayLoad.status) {
         this.setState({
           exchange_rate: response.data.PayLoad.data.exchange_rate,
           fee: response.data.PayLoad.data.fee,
-          receiving_amount: response.data.PayLoad.data.receiving_amount
+          receiving_amount: response.data.PayLoad.data.receiving_amount,
+          amount: response.data.PayLoad.data.sending_amount
         });
       } else {
         this.toastr.addNotification({
-          message: 'Something went wrong.',
+          message: response.data.PayLoad.error[0],
           level: 'error'
         });
       }
@@ -128,10 +137,10 @@ class ExchangeRate extends Component {
       receivingCurrency,
       sendingCurrency,
       exchange_rate,
+      direction,
       receiving_amount,
       fee
     } = this.state;
-    
     
     return (
       <div className="exchange-rate">
@@ -184,6 +193,16 @@ class ExchangeRate extends Component {
                 </div>
               </div>
             </div>
+
+            <div className="exchange-rate__direction">
+              <div>Direction:</div>
+              <label>
+                <input type="radio" name="direction" value={1} checked={direction === 1} onChange={this.handleDirectionChange}/> Forwards
+              </label>
+              <label>
+                <input type="radio" name="direction" value={0} checked={direction === 0} onChange={this.handleDirectionChange}/> Backwards
+              </label>
+            </div>
             
             <div className="exchange-rate__amount">
               <label htmlFor="exchange_amount">Amount:</label>
@@ -194,19 +213,19 @@ class ExchangeRate extends Component {
               <div className="exchange-rate__result text-center">
                 <div>
                   <span>Exchange Rate:</span>
-                  <span>{exchange_rate}</span>
+                  <span>{sendingCurrency.currency_symbol + parseFloat(1).toFixed(2) + ' = ' + receivingCurrency.currency_symbol + parseFloat(exchange_rate).toFixed(2)}</span>
                 </div>
                 <div>
                   <span>Fee:</span>
-                  <span>{fee}</span>
+                  <span>{sendingCurrency.currency_symbol + parseFloat(fee).toFixed(2)}</span>
                 </div>
                 <div>
                   <span>Sending Amount:</span>
-                  <span>{amount}</span>
+                  <span>{sendingCurrency.currency_symbol + parseFloat(amount).toFixed(2)}</span>
                 </div>
                 <div>
                   <span>Receiving Amount:</span>
-                  <span>{receiving_amount}</span>
+                  <span>{receivingCurrency.currency_symbol + parseFloat(receiving_amount).toFixed(2)}</span>
                 </div>
               </div>
             }

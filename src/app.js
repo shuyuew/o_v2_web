@@ -10,6 +10,7 @@ import {
   Switch
 } from 'react-router-dom';
 import { StripeProvider } from 'react-stripe-elements';
+import CONFIG from './data/config.js';
 
 
 // Components
@@ -18,6 +19,7 @@ import Registration from './components/Registration';
 import ForgotPassword from './components/ForgotPassword';
 import ResetPassword from './components/ResetPassword';
 import SuccessfulRegistration from './components/RegistrationSuccess';
+import PayBillSuccess from './components/PayBillSuccess';
 import HomeBackground from './components/HomeBackground';
 import NotFound from './components/NotFound';
 import Dashboard from './components/Dashboard';
@@ -33,6 +35,7 @@ import NewCreditCard from './components/NewCreditCard';
 import BillersTitle from './components/BillersTitle';
 import MyBillers from './components/MyBillers';
 import NewBiller from './components/NewBiller';
+import BillPaymentStatus from './components/BillPaymentStatus';
 import TransactionsHistory from './components/History';
 import PrivateRoute from './components/PrivateRoute';
 
@@ -58,7 +61,7 @@ const DashboardRoutes = [
     authorized: true,
     exact: true,
     children: {
-      mainTop: <HeaderTitle title="Pay Bills Title" />,
+      mainTop: <HeaderTitle title="Pay Bills" />,
       mainContent: <PayBills />,
       rightSideBarTop: <BillersTitle />,
       rightSidebarContent: <MyBillers />
@@ -147,6 +150,18 @@ const DashboardRoutes = [
       rightSideBarTop: <HeaderTitle title="History sidebar title" />,
       rightSidebarContent: ''
     }
+  },
+  {
+    path: '/bill-payment-status',
+    name: 'Bill Payment Status',
+    authorized: true,
+    exact: true,
+    children: {
+      mainTop: <HeaderTitle title="Bill Payment Status" />,
+      mainContent: <BillPaymentStatus />,
+      rightSideBarTop: <HeaderTitle title="History sidebar title" />,
+      rightSidebarContent: ''
+    }
   }
 ];
 
@@ -156,7 +171,7 @@ class App extends Component {
   render() {      
     return (
       <Router>
-        <StripeProvider apiKey="pk_test_QULFerT2MWbJyQqWZ0jNhsxn">
+        <StripeProvider apiKey={CONFIG.STRIPE_KEY}>
       
           <HomeBackground>
             <Switch>
@@ -168,6 +183,7 @@ class App extends Component {
               <Route exact path="/reset-password" component={ResetPassword}/>
               
               <PrivateRoute path="/success" component={SuccessfulRegistration}/>
+              <PrivateRoute path="/bill-payment-success" component={PayBillSuccess}/>
               
               {DashboardRoutes.map((route, index) => (
                 route.authorized ? (

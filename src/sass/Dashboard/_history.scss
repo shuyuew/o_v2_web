@@ -36,6 +36,7 @@
   padding: 0 40px 0 15px;
   border-radius: 2px;
   border: 1px solid #e6e6e6;
+  cursor: pointer;
   
   &__status {
     position: absolute;
@@ -61,17 +62,19 @@
       border-right: 30px solid $white;
     }
     
-    &.orange {
+    &.PROCESSING,
+    &.SENT,
+    &.FINISHED {
       &:before {
         border-right-color: #f19648;
       }
     }
     
-    &.blue {
-      &:before {
-        border-right-color: #40e2fb;
-      }
-    }
+    // &.FINISHED {
+    //   &:before {
+    //     border-right-color: #40e2fb;
+    //   }
+    // }
   }
   
   &:not(:last-of-type) {
@@ -106,4 +109,181 @@
   &__bottom {
     font-size: 14px;
   }
+}
+
+.bill-info {
+
+  &__header {
+    padding-bottom: 20px;
+    border-bottom: 1px solid #e6e6e6;
+
+    > div {
+
+      &:first-child {
+        font-size: 14px;
+      }
+
+      &:nth-of-type(2) {
+        font-family: $dosis;
+        font-weight: bold;
+        letter-spacing: 1px;
+        font-size: 24px;
+        color: #21a5de;
+        margin: 5px 0;
+      }
+
+      &:nth-of-type(3) {
+        font-size: 14px;
+      }
+
+      &:last-child {
+        margin-top: 15px;
+        font-size: 18px;
+      }
+
+    }
+  }
+
+  &__content {
+    > div {
+      margin-top: 20px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid #e6e6e6;
+
+      span {
+        display: block;
+
+        &:first-child {
+          font-family: $dosis;
+          font-weight: bold;
+          margin-bottom: 5px;
+        }
+        
+        &:nth-child(3) {
+          margin-top: 3px;
+          font-size: 12px;
+        }
+      }
+    }
+  }
+  
+  &__exchange-rate {
+    margin: 20px 0;
+    padding: 10px 15px;
+    color: #ffffff;
+    background-color: #003142;
+    text-align: center;
+    font-size: 14px;
+  }
+
+  &__tracking {
+    padding-top: 20px;
+
+    h4 {
+      font-weight: bold;
+      text-transform: uppercase;
+      font-family: $dosis;
+      padding-bottom: 10px;
+      border-bottom: 1px solid #e6e6e6;
+    }
+
+    ul {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+
+      li {
+        flex: 0 1 100%;
+        display: flex;
+        margin-top: 25px;
+
+        &:not(:last-of-type) {
+          border-bottom: 1px solid #e6e6e6;
+          padding-bottom: 10px;
+        }
+
+        .stage-status {
+          width: 15px;
+          height: 15px;
+          border-radius: 50%;
+          background-color: #29c5ff;
+          position: relative;
+          margin-left: 7px;
+
+          &:before {
+            content: '';
+            position: absolute;
+            right: -5px;
+            top: -5px;
+            bottom: -5px;
+            left: -5px;
+            border-radius: 50%;
+            border: 2px solid #29c5ff;
+          }
+        }
+
+        > div {
+          flex: 1;
+
+          &:first-of-type {
+            flex: 0 1 35px;
+          }
+        }
+
+        span {
+          display: block;
+
+          &:first-child {
+            font-family: $dosis;
+            font-weight: bold;
+          }
+
+          &:nth-child(2) {
+            margin: 5px 0;
+            font-size: 15px;
+            line-height: 1.2;
+          }
+
+          &:last-child {
+            font-size: 14px;
+          }
+        }
+      }
+    }
+  }
+
+  &__actions {
+    margin-top: 50px;
+
+    button, a {
+      display: inline-block;
+      text-decoration: none;
+      margin-top: 15px;
+      appearance: none;
+      font-size: 14px;
+      cursor: pointer;
+      background-color: #e6e6e6;
+      color: #222222;
+      padding: 15px;
+      font-family: $dosis;
+      font-weight: bold;
+      border: 1px solid #afafaf;
+      margin-right: 15px;
+      transition: all 0.3s ease;
+      border-radius: 2px;
+
+      &:hover {
+        background-color: darken(#afafaf, 1%);
+      }
+    }
+
+    h4 {
+      font-weight: bold;
+      text-transform: uppercase;
+      font-family: $dosis;
+      padding-bottom: 10px;
+      border-bottom: 1px solid #e6e6e6;
+    }
+  }
+
 }

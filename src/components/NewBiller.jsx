@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import OroboAPI from '../API/api-service';
 import UserAuth from '../API/auth';
+import { withRouter } from 'react-router-dom';
 
 import CurrenciesSelect from './CurrenciesSelect';
 import HomepageInput from './HomepageInput';
@@ -80,13 +81,17 @@ class NewBiller extends Component {
 
     this.setState({ inProgress: true });
     OroboAPI.recommendBiller(dataToSend).then((response) => {
-      console.log(response);
+  
       if (response.data.PayLoad.status) {
         this.toastr.addNotification({
           message: response.data.PayLoad.data.message,
           level: 'success',
           autoDismiss: 0
         });
+
+        setTimeout(() => {
+          this.props.history.push('/send-money');
+        }, 3500);
       } else {
 
 
@@ -109,16 +114,6 @@ class NewBiller extends Component {
   
   componentDidMount() {
     
-    OroboAPI.getBillsCategories().then((response) => {
-      
-      if (response.status === 200) {
-        
-      }
-      
-    }, (error) => {
-      console.log(error);
-    });
-    
     OroboAPI.getReceivingCurrencies().then((response) => {
       if (response.status === 200) {
         this.setState({
@@ -133,8 +128,6 @@ class NewBiller extends Component {
           if (res.data.PayLoad.status) {
             this.setState({ biller_banks: res.data.PayLoad.data.banks });
           }
-        }, (err) => {
-    
         });
 
 
@@ -350,4 +343,4 @@ class NewBiller extends Component {
 
 }
 
-export default NewBiller;
+export default withRouter(NewBiller);

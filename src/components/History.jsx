@@ -5,79 +5,29 @@ import {
   TabList,
   TabPanel
  } from 'react-tabs';
+ import { withRouter } from 'react-router-dom';
  import OroboAPI from '../API/api-service';
- 
- 
-// const paymentsList = [
-//   {
-//     name: 'Darlene M. Scarborough',
-//     ngncode: 'NGN 25000',
-//     status: 'orange',
-//     date: 'October 22, 18:48',
-//     amount: 'USD 42.56'
-//   },
-//   {
-//     name: 'Nelson J. Mai',
-//     ngncode: 'NGN 5000',
-//     status: 'blue',
-//     date: 'November 22, 18:48',
-//     amount: 'USD 150.56'
-//   },
-//   {
-//     name: 'Jamie S. Serrano',
-//     ngncode: 'NGN 25000',
-//     status: 'orange',
-//     date: 'January 22, 18:48',
-//     amount: 'USD 2500'
-//   },
-//   {
-//     name: 'Linda K. Forest',
-//     ngncode: 'NGN 30000',
-//     status: 'blue',
-//     date: 'March 22, 18:48',
-//     amount: 'USD 92.56'
-//   }
-// ];
-// const transfersList = [
-//   {
-//     name: 'Miles R. Gentile',
-//     ngncode: 'NGN 25000',
-//     status: 'blue',
-//     date: 'October 22, 18:48',
-//     amount: 'USD 42.56'
-//   },
-//   {
-//     name: 'Margaret B. Blackshear',
-//     ngncode: 'NGN 5000',
-//     status: 'orange',
-//     date: 'November 22, 18:48',
-//     amount: 'USD 150.56'
-//   },
-//   {
-//     name: 'Don R. Hoover',
-//     ngncode: 'NGN 25000',
-//     status: 'blue',
-//     date: 'January 22, 18:48',
-//     amount: 'USD 2500'
-//   },
-//   {
-//     name: 'Jane R. Sanchez',
-//     ngncode: 'NGN 30000',
-//     status: 'orange',
-//     date: 'March 22, 18:48',
-//     amount: 'USD 92.56'
-//   }
-// ];
+ import moment from 'moment';
  
 
 class TransactionsHistory extends Component {
   
   constructor(props) {
     super(props);
+
     this.state = {
       transfers: [],
       bill_payments: []
     };
+
+    this.previewBillPayment = this.previewBillPayment.bind(this);
+  }
+
+  previewBillPayment(data) {
+    this.props.history.push({
+      pathname: '/bill-payment-status',
+      state: { detail: data }
+    });
   }
   
   componentDidMount() {
@@ -85,6 +35,7 @@ class TransactionsHistory extends Component {
     // Get User Transfers
     OroboAPI.getTransfers().then((response) => {
       if (response.data.PayLoad.status) {
+        console.log(response.data);
         this.setState({ transfers: response.data.PayLoad.data.transfer_requests });
       }
     }, (error) => {
@@ -94,6 +45,7 @@ class TransactionsHistory extends Component {
     // Get User Bill Payments
     OroboAPI.getBIllPayments().then((response) => {
       if (response.data.PayLoad.status) {
+        console.log(response.data);
         this.setState({ bill_payments: response.data.PayLoad.data.bill_payments });
       }
     }, (error) => {
@@ -108,17 +60,17 @@ class TransactionsHistory extends Component {
     
     const renderList = (listItems) => {
       return listItems.map((item, index) => (
-        <div key={index} className="list-item">
-          <span className={'list-item__status ' + item.status}>{item.status === 'blue' ? '?' : '!'}</span>
+        <div key={index} className="list-item" onClick={() => { this.previewBillPayment(item) }}>
+          <span className={'list-item__status ' + item.status.title}>{item.status.title === 'PROCESSING' || item.status.title === 'SENT' || item.status.title === 'FINISHED' ? '!' : '?'}</span>
           
           <div>
             <div className="list-item__top">
-              <span>{item.name}</span>
-              <span>{item.ngncode}</span>
+              <span>{item.bill_provider.title}</span>
+              <span>{item.receiving_currency.currency_code + ' ' + item.receiving_amount}</span>
             </div>
             <div className="list-item__bottom">
-              <span>{item.date}</span>
-              <span>{item.amount}</span>
+              <span>{moment(item.created).format('MMMM DD, hh:mm')}</span>
+              <span>{item.sending_currency.currency_code + ' ' + item.sending_amount}</span>
             </div>
           </div>
         </div>
@@ -159,4 +111,4 @@ class TransactionsHistory extends Component {
 
 }
 
-export default TransactionsHistory;
+export default withRouter(TransactionsHistory);

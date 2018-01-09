@@ -32,10 +32,10 @@ class MyCards extends Component {
               <div>{cardData.title}</div>
             </div>
 
-            <div className="user-card__info">
+            {/* <div className="user-card__info">
               <div>Country:</div>
               <div>{cardData.country !== null ? cardData.country : 'Country info is missing.' }</div>
-            </div>
+            </div> */}
 
             <div className="user-card__info">
               <div>Created:</div>

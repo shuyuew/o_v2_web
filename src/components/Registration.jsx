@@ -4,6 +4,7 @@ import OroboAPI from '../API/api-service';
 import HomepageInput from './HomepageInput';
 import PhoneInput from './PhoneInput';
 import Loader from './Loader';
+import Duphlux from '../API/duphlux';
 import NotificationSystem from 'react-notification-system';
 
 class Registration extends Component {
@@ -16,6 +17,7 @@ class Registration extends Component {
       middle_name: '',
       last_name: '',
       extension: '',
+      phone: '',
       password: '',
       confirm_password: '',
       physical_address: '',
@@ -34,6 +36,9 @@ class Registration extends Component {
   }
   
   updateInputValue(data) {
+    if (data.name === 'phone') {
+      this.setState({ phone_number: this.state.extension + data.value });
+    }
     this.setState({[data.name]: data.value});
   }
   
@@ -52,50 +57,66 @@ class Registration extends Component {
       return;
     }
     
+    const that = this;
     this.toggleLoader(true);
-    OroboAPI.registerUser(this.state).then((response) => {
-      if (response.status === 200 && response.data.PayLoad.status) {
-        OroboAPI.loginUser(this.state).then((responseData) => {
-          if (responseData.status === 200 && responseData.data.PayLoad.status) {
-            this.props.history.push('/success');
-          } else {
-            if (responseData.data.PayLoad.error && responseData.data.PayLoad.error.length) {
-              for (var i = 0; i < response.data.PayLoad.error.length; i++) {
-                this.toastr.addNotification({
-                  message: response.data.PayLoad.error[i],
+    Duphlux(this.state.phone_number, window.location.href, () => {
+      return {
+        onSuccess: function (reference) {
+          OroboAPI.registerUser(that.state).then((response) => {
+            if (response.status === 200 && response.data.PayLoad.status) {
+              OroboAPI.loginUser(that.state).then((responseData) => {
+                if (responseData.status === 200 && responseData.data.PayLoad.status) {
+                  that.props.history.push('/success');
+                } else {
+                  if (responseData.data.PayLoad.error && responseData.data.PayLoad.error.length) {
+                    for (var i = 0; i < response.data.PayLoad.error.length; i++) {
+                      that.toastr.addNotification({
+                        message: response.data.PayLoad.error[i],
+                        level: 'error'
+                      });
+                    }
+                  }
+                  
+                  that.toggleLoader(false);
+                }
+              }, (error) => {
+                that.toggleLoader(false);
+                that.toastr.addNotification({
+                  message: 'Something went wrong. Please try again later.',
                   level: 'error'
-                });
+                });  
+              });
+            } else {
+              that.toggleLoader(false);
+              
+              if (response.data.PayLoad.error && response.data.PayLoad.error.length) {
+                for (var i = 0; i < response.data.PayLoad.error.length; i++) {
+                  that.toastr.addNotification({
+                    message: response.data.PayLoad.error[i],
+                    level: 'error'
+                  });
+                }
               }
             }
             
-            this.toggleLoader(false);
-          }
-        }, (error) => {
-          this.toggleLoader(false);
-          this.toastr.addNotification({
-            message: 'Something went wrong. Please try again later.',
-            level: 'error'
-          });  
-        });
-      } else {
-        this.toggleLoader(false);
-        
-        if (response.data.PayLoad.error && response.data.PayLoad.error.length) {
-          for (var i = 0; i < response.data.PayLoad.error.length; i++) {
-            this.toastr.addNotification({
-              message: response.data.PayLoad.error[i],
+          }, (error) => {
+            that.toggleLoader(false);
+            that.toastr.addNotification({
+              message: 'Something went wrong. Please try again later.',
               level: 'error'
             });
-          }
+          });
+
+        },
+        
+        onFailure: function (reference) {
+          console.log('onFailure', reference);
+        },
+        
+        onError: function (errorMessage) {
+          console.log('onError', errorMessage);
         }
       }
-      
-    }, (error) => {
-      this.toggleLoader(false);
-      this.toastr.addNotification({
-        message: 'Something went wrong. Please try again later.',
-        level: 'error'
-      });
     });
     
   }
@@ -103,7 +124,8 @@ class Registration extends Component {
   updateCurrencyData(data) {
     this.setState({
       country_currency_id: data.id,
-      extension: data.extension
+      extension: data.extension,
+      phone_number: data.extension + this.state.phone
     });
   }
 
@@ -113,14 +135,11 @@ class Registration extends Component {
       first_name,
       middle_name,
       last_name,
-      extension,
       password,
       confirm_password,
       physical_address,
       email_address,
-      phone_number,
       referral_code,
-      country_currency_id,
       inProgress
     } = this.state;
     
@@ -169,7 +188,7 @@ class Registration extends Component {
               
               <PhoneInput
                 placeholder="Phone Number*"
-                name="phone_number"
+                name="phone"
                 required={true}
                 onDropdownUpdate={this.toggleLoader}
                 updateCurrencyID={this.updateCurrencyData}
