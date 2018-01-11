@@ -90,7 +90,7 @@ class NewBiller extends Component {
         });
 
         setTimeout(() => {
-          this.props.history.push('/send-money');
+          this.props.history.push('/pay-bills');
         }, 3500);
       } else {
 

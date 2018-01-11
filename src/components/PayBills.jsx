@@ -37,6 +37,7 @@ class PayBills extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleInputChange = this.handleInputChange.bind(this);
     this.selectOption = this.selectOption.bind(this);
+    this.updateReqField = this.updateReqField.bind(this);
     this.goToPreviousStep = this.goToPreviousStep.bind(this);
     this.updateBillOption = this.updateBillOption.bind(this);
     this.updateBillOptionAmount = this.updateBillOptionAmount.bind(this);
@@ -61,7 +62,7 @@ class PayBills extends Component {
         beneficiary_email_address: this.state.beneficiary_email_address,
         source: 'ios/and'
       },
-      BillCollectedField: []
+      BillCollectedField: getBillCollectedData(this.state.selectedBill.id, this.state.selectedBill.bill_required_fields)
     }
 
     this.setState({ inProgress: true });
@@ -108,6 +109,18 @@ class PayBills extends Component {
 
   }
 
+  updateReqField(e) {
+    const selectedBill = this.state.selectedBill;
+    const fieldId = e.target.id.split('-')[1];
+    const fieldValue = e.target.value;
+    const selectedField = selectedBill.bill_required_fields.find((field) => field.id == fieldId);
+    const fieldIndex = selectedBill.bill_required_fields.indexOf(selectedField);
+
+    selectedBill.bill_required_fields[fieldIndex].value = fieldValue;
+    console.log(selectedBill);
+    this.setState({ selectedBill: selectedBill });
+  }
+
   handleInputChange(e) {
     this.setState({ [e.target.name]: e.target.value });
   }
@@ -119,7 +132,7 @@ class PayBills extends Component {
   }
 
   updateBillOption(e) {
-    const billOption = this.state.selectedBill.bill_options.find((billOpt) => billOpt.id === e.target.value);
+    const billOption = this.state.selectedBill.bill_options.find((billOpt) => billOpt.id == e.target.value);
     this.setState({ selectedBillOption: billOption });
   }
 
@@ -156,7 +169,7 @@ class PayBills extends Component {
           this.state.selectedCategory.id,
           data.id
         ).then((response) => {
-          
+
           if (response.data.PayLoad.status) {
             this.setState({ billers: response.data.PayLoad.data.billers });
           }
@@ -174,7 +187,7 @@ class PayBills extends Component {
 
       case 3: // Biller
         this.setState({ inProgress: true });
-      
+
         OroboAPI.listBillerBills(data.id).then((response) => {
           if (response.data.PayLoad.status) {
             this.setState({
@@ -192,7 +205,6 @@ class PayBills extends Component {
       break;
 
       case 4: // Pay
-        console.log(data);
         this.setState({
           step: 5,
           selectedBill: data,
@@ -223,11 +235,11 @@ class PayBills extends Component {
               OroboAPI.calculateFee({
                 sending_currency: UserData.country_currency_id,
                 receiving_currency: this.state.selectedCurrency.id,
-                amount: 1,
+                amount: 5,
                 direction: 1
               }).then((res) => {
                 this.setState({ inProgress: false });
-
+                console.log(res);
                 if (res.data.PayLoad.status) {
                   exchangeRate = res.data.PayLoad.data.exchange_rate;
                   serviceFee = res.data.PayLoad.data.fee;
@@ -396,7 +408,7 @@ class PayBills extends Component {
 
                   <div className="form-group">
                     <label htmlFor="select_option">Select Option</label>
-                    <select name="bill_option" id="select_option" value={selectedBill.bill_options[0].id} className="form-control" onChange={this.updateBillOption} required>
+                    <select name="bill_option" id="select_option" value={selectedBillOption.id || selectedBill.bill_options[0].id} className="form-control" onChange={this.updateBillOption} required>
                       {selectedBill.bill_options.map((item) => (
                         <option key={item.id} value={item.id}>{item.title}</option>
                       ))}
@@ -405,12 +417,40 @@ class PayBills extends Component {
 
                   <div className="form-group">
                     <label htmlFor="amount_option">Amount ({selectedCurrency.currency_symbol})</label>
-                    <input type="number" name="bill_amount" id="amount_option" value={selectedBillOption.amount} className="form-control" onChange={this.updateBillOptionAmount} required/>
+                    <input type="number" disabled={!selectedBillOption.allow_any_amount} name="bill_amount" id="amount_option" value={selectedBillOption.amount} className="form-control" onChange={this.updateBillOptionAmount} required/>
                   </div>
                 </div>
 
                 <div className="bill-details__information">
                   <h5 className="bill-details__title text-uppercase">Required Information</h5>
+
+                  <div className="bill-details__required-fields">
+                    {selectedBill.bill_required_fields.length === 0 && 'No required fileds provided for this biller.'}
+
+                    {selectedBill.bill_required_fields.length > 0 &&
+                      <ul>
+                        {selectedBill.bill_required_fields.map((field) => (
+                          <li key={field.id}>
+                            <label htmlFor={'field-' + field.id}>{field.title.replace(/_/g, ' ')}</label>
+
+                            {field.bill_field_type_id === 1 &&
+                              <input type="text" name={field.title} id={'field-' + field.id} onChange={this.updateReqField} value={field.value || ''} required className="form-control" />
+                            }
+
+                            {field.bill_field_type_id === 2 &&
+                              <select name={field.title} id={'field-' + field.id} required value={field.value || 0} onChange={this.updateReqField} className="form-control">
+                                <option value="0" disabled>Select option</option>
+                                {field.select_options.split(';').map((option) => (
+                                  <option key={option} value={option}>{option}</option>
+                                ))}
+                              </select> 
+                            }
+
+                          </li>
+                        ))}
+                      </ul>
+                    }
+                  </div>
                 </div>
 
                 <div className="bill-details__submit">
@@ -493,6 +533,19 @@ class PayBills extends Component {
     );
   }
 
+}
+
+
+const getBillCollectedData = (billId, listing) => {
+  let collectedData = [];
+  for (var i = 0; i < listing.length; i++) {
+    collectedData.push({
+      bill_id: billId,
+      bill_required_field_id: listing[i].id,
+      collected_data: listing[i].value
+    });
+  }
+  return collectedData;
 }
 
 export default withRouter(PayBills);

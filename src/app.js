@@ -38,7 +38,7 @@ import NewBiller from './components/NewBiller';
 import BillPaymentStatus from './components/BillPaymentStatus';
 import TransactionsHistory from './components/History';
 import PrivateRoute from './components/PrivateRoute';
-
+import HomepageRoute from './components/HomepageRoute';
 
 const HeaderTitle = (props) => <h4 className="text-center text-uppercase">{props.title}</h4>;
 
@@ -176,7 +176,7 @@ class App extends Component {
           <HomeBackground>
             <Switch>
               
-              <Route exact path="/" component={Login}/>
+              <HomepageRoute exact path="/" context={{ title: 'Heroes List' }} />
               <Route exact path="/login" component={Login}/>
               <Route exact path="/sign-up" component={Registration}/>
               <Route exact path="/forgot-password" component={(props) => <ForgotPassword routeData={props} />}/>

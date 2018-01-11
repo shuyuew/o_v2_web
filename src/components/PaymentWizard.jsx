@@ -4,6 +4,7 @@ import OroboAPI from '../API/api-service';
 import UserAuth from '../API/auth';
 import NotificationSystem from 'react-notification-system';
 import Loader from './Loader';
+import { confirm } from './confirm';
 
 class PaymentWizard extends Component {
   
@@ -29,11 +30,16 @@ class PaymentWizard extends Component {
       });
       return;
     }
-
-    this.setState({
-      step: 2,
-      selectedBeneficiary: data
+    
+    confirm('Send money to ' + data.full_name + '?').then(() => {
+      this.setState({
+        step: 2,
+        selectedBeneficiary: data
+      });      
+    }, () => {
+      console.log('cancel!');
     });
+
   }
 
   goToPreviousStep() {
@@ -81,6 +87,29 @@ class PaymentWizard extends Component {
             list={beneficiares}
             beneficiary={selectedBeneficiary}
             beneficiarySelect={this.onBeneficiarySelection} />
+        }
+
+        {step === 2 &&
+          <div className="select-amount">
+
+            <div className="select-amount__amount">
+              <label htmlFor="select_amount">Amount:</label>
+              <div>
+                <span>$</span>
+                <input type="number" className="form-control" name="select_amount" id="select_amount"/>
+              </div>
+            </div>
+
+            <div className="select-amount__sending-currency">
+              <span>
+                IMG
+              </span>
+              <span>USD</span>
+            </div>
+
+            <div className="select-amount__exchange-rate">Ex. Rate: $5.00 = N389.00, Service fee $4.00</div>
+
+          </div>
         }
 
       </div>
