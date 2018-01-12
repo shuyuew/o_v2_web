@@ -64,6 +64,7 @@
     
     &.PROCESSING,
     &.SENT,
+    &.FAILED,
     &.FINISHED {
       &:before {
         border-right-color: #f19648;
@@ -149,6 +150,16 @@
       margin-top: 20px;
       padding-bottom: 10px;
       border-bottom: 1px solid #e6e6e6;
+
+      .beneficiary-channel-data {
+        margin-top: 10px;
+
+        span {
+          &:first-of-type {
+            margin-bottom:0;
+          }
+        }
+      }
 
       span {
         display: block;

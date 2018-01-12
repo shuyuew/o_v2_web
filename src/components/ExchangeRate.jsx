@@ -45,15 +45,15 @@ class ExchangeRate extends Component {
     }    
     
     this.setState({ inProgress: true });
-    console.log(dataToSend);
+    
     OroboAPI.calculateFee(dataToSend).then((response) => {
-      console.log(response);
+      
       if (response.data.PayLoad.status) {
         this.setState({
           exchange_rate: response.data.PayLoad.data.exchange_rate,
           fee: response.data.PayLoad.data.fee,
           receiving_amount: response.data.PayLoad.data.receiving_amount,
-          amount: response.data.PayLoad.data.sending_amount
+          amount: response.data.PayLoad.data.sending_amount.toFixed(2)
         });
       } else {
         this.toastr.addNotification({

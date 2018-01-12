@@ -288,6 +288,14 @@ export default {
     }).catch(function (error) {
       return error;
     });
+  },
+
+  sendMoney: function(data) {
+    return axios.post(CONFIG.CREATE_TRANSFER, data).then(function (response) {
+      return response;
+    }).catch(function (error) {
+      return error;
+    });
   }
   
 }

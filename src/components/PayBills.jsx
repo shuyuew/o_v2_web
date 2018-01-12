@@ -60,7 +60,7 @@ class PayBills extends Component {
         beneficiary_name: this.state.beneficiary_name,
         beneficiary_phone_number: this.state.beneficiary_phone_number,
         beneficiary_email_address: this.state.beneficiary_email_address,
-        source: 'ios/and'
+        source: 'web'
       },
       BillCollectedField: getBillCollectedData(this.state.selectedBill.id, this.state.selectedBill.bill_required_fields)
     }
@@ -77,7 +77,7 @@ class PayBills extends Component {
 
             if (response.data.PayLoad.status) {
               that.props.history.push({
-                pathname: '/bill-payment-success',
+                pathname: '/payment-success',
                 state: { detail: response.data.PayLoad.data }
               });
             } else {
@@ -117,7 +117,6 @@ class PayBills extends Component {
     const fieldIndex = selectedBill.bill_required_fields.indexOf(selectedField);
 
     selectedBill.bill_required_fields[fieldIndex].value = fieldValue;
-    console.log(selectedBill);
     this.setState({ selectedBill: selectedBill });
   }
 
@@ -143,6 +142,8 @@ class PayBills extends Component {
   }
 
   selectOption(data) {
+
+    let requiredFields = [];
 
     if (!UserAuth.getUserData().card) {
       this.toastr.addNotification({
@@ -213,60 +214,71 @@ class PayBills extends Component {
       break;
 
       case 5:
+
+        requiredFields = this.state.selectedBill.bill_required_fields.filter((field) => !field.value || field.value.length === 0);
+
         if (!this.state.selectedBillOption.amount || this.state.selectedBillOption.amount.length === 0) {
           this.toastr.addNotification({
             message: 'Please provide amount value.',
             level: 'error'
           });
-        } else {
-          this.setState({ inProgress: true });
-          
-          OroboAPI.calculateFee({
-            sending_currency: UserData.country_currency_id,
-            receiving_currency: this.state.selectedCurrency.id,
-            amount: this.state.selectedBillOption.amount,
-            direction: 0
-          }).then((response) => {
-            
-            if (response.data.PayLoad.status) {
-              sendingAmount = response.data.PayLoad.data.sending_amount;
-              receivingAmount = response.data.PayLoad.data.receiving_amount;
-              
-              OroboAPI.calculateFee({
-                sending_currency: UserData.country_currency_id,
-                receiving_currency: this.state.selectedCurrency.id,
-                amount: 5,
-                direction: 1
-              }).then((res) => {
-                this.setState({ inProgress: false });
-                console.log(res);
-                if (res.data.PayLoad.status) {
-                  exchangeRate = res.data.PayLoad.data.exchange_rate;
-                  serviceFee = res.data.PayLoad.data.fee;
-                  this.setState({ step: 6 });
-                } else {
-                  this.toastr.addNotification({
-                    message: res.data.PayLoad.error[0],
-                    level: 'error'
-                  });
-                }
-              }, (err) => {
-                this.setState({ inProgress: false });
-              });
-
-            } else {
-              this.setState({ inProgress: false });
-              this.toastr.addNotification({
-                message: response.data.PayLoad.error[0],
-                level: 'error'
-              });
-            }
-          }, (error) => {
-            this.setState({ inProgress: true });
-            console.log(error);
-          });
-
+          return;
         }
+
+        if (requiredFields.length) {
+          this.toastr.addNotification({
+            message: 'Please make sure you provide value for each required field.',
+            level: 'error'
+          });
+          return;
+        }
+        
+
+        this.setState({ inProgress: true });
+          
+        OroboAPI.calculateFee({
+          sending_currency: UserData.country_currency_id,
+          receiving_currency: this.state.selectedCurrency.id,
+          amount: this.state.selectedBillOption.amount,
+          direction: 0
+        }).then((response) => {
+          
+          if (response.data.PayLoad.status) {
+            sendingAmount = response.data.PayLoad.data.sending_amount;
+            receivingAmount = response.data.PayLoad.data.receiving_amount;
+            
+            OroboAPI.calculateFee({
+              sending_currency: UserData.country_currency_id,
+              receiving_currency: this.state.selectedCurrency.id,
+              amount: 5,
+              direction: 1
+            }).then((res) => {
+              this.setState({ inProgress: false });
+              if (res.data.PayLoad.status) {
+                exchangeRate = res.data.PayLoad.data.exchange_rate;
+                serviceFee = res.data.PayLoad.data.fee;
+                this.setState({ step: 6 });
+              } else {
+                this.toastr.addNotification({
+                  message: res.data.PayLoad.error[0],
+                  level: 'error'
+                });
+              }
+            }, (err) => {
+              this.setState({ inProgress: false });
+            });
+
+          } else {
+            this.setState({ inProgress: false });
+            this.toastr.addNotification({
+              message: response.data.PayLoad.error[0],
+              level: 'error'
+            });
+          }
+        }, (error) => {
+          this.setState({ inProgress: true });
+          console.log(error);
+        });
 
       break;
 

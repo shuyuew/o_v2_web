@@ -8,6 +8,7 @@ import {
  import { withRouter } from 'react-router-dom';
  import OroboAPI from '../API/api-service';
  import moment from 'moment';
+ import Loader from './Loader';
  
 
 class TransactionsHistory extends Component {
@@ -17,7 +18,8 @@ class TransactionsHistory extends Component {
 
     this.state = {
       transfers: [],
-      bill_payments: []
+      bill_payments: [],
+      inProgress: true
     };
 
     this.previewBillPayment = this.previewBillPayment.bind(this);
@@ -25,7 +27,7 @@ class TransactionsHistory extends Component {
 
   previewBillPayment(data) {
     this.props.history.push({
-      pathname: '/bill-payment-status',
+      pathname: '/payment-status',
       state: { detail: data }
     });
   }
@@ -36,7 +38,7 @@ class TransactionsHistory extends Component {
     OroboAPI.getTransfers().then((response) => {
       if (response.data.PayLoad.status) {
         console.log(response.data);
-        this.setState({ transfers: response.data.PayLoad.data.transfer_requests });
+        this.setState({ inProgress: false, transfers: response.data.PayLoad.data.transfer_requests });
       }
     }, (error) => {
       console.log(error);
@@ -56,16 +58,16 @@ class TransactionsHistory extends Component {
 
   render() {
     
-    const { transfers, bill_payments } = this.state;
+    const { transfers, bill_payments, inProgress } = this.state;
     
     const renderList = (listItems) => {
       return listItems.map((item, index) => (
         <div key={index} className="list-item" onClick={() => { this.previewBillPayment(item) }}>
-          <span className={'list-item__status ' + item.status.title}>{item.status.title === 'PROCESSING' || item.status.title === 'SENT' || item.status.title === 'FINISHED' ? '!' : '?'}</span>
+          <span className={'list-item__status ' + item.status.title}>{item.status.title === 'PROCESSING' || item.status.title === 'SENT' || item.status.title === 'FINISHED'  || item.status.title === 'FAILED' ? '!' : '?'}</span>
           
           <div>
             <div className="list-item__top">
-              <span>{item.bill_provider.title}</span>
+              <span>{item.bill_provider ? item.bill_provider.title : item.beneficiary.full_name}</span>
               <span>{item.receiving_currency.currency_code + ' ' + item.receiving_amount}</span>
             </div>
             <div className="list-item__bottom">
@@ -79,6 +81,8 @@ class TransactionsHistory extends Component {
     
     return (
       <div className="orobo-history">
+
+        <Loader showWhenTrue={inProgress} />    
         
         <Tabs>
             

@@ -24,6 +24,7 @@ import HomeBackground from './components/HomeBackground';
 import NotFound from './components/NotFound';
 import Dashboard from './components/Dashboard';
 import PaymentSteps from './components/PaymentSteps';
+import ShareOrobo from './components/ShareOrobo';
 import PaymentWizard from './components/PaymentWizard';
 import PayBills from './components/PayBills';
 import MyCards from './components/MyCards';
@@ -49,7 +50,7 @@ const DashboardRoutes = [
     authorized: true,
     exact: true,
     children: {
-      mainTop: <PaymentSteps />,
+      mainTop: <HeaderTitle title="Send Money" />,
       mainContent: <PaymentWizard />,
       rightSideBarTop: <HeaderTitle title="Exchange Rate" />,
       rightSidebarContent: <ExchangeRate />
@@ -152,14 +153,26 @@ const DashboardRoutes = [
     }
   },
   {
-    path: '/bill-payment-status',
-    name: 'Bill Payment Status',
+    path: '/payment-status',
+    name: 'Payment Status',
     authorized: true,
     exact: true,
     children: {
-      mainTop: <HeaderTitle title="Bill Payment Status" />,
+      mainTop: <HeaderTitle title="Payment Status" />,
       mainContent: <BillPaymentStatus />,
       rightSideBarTop: <HeaderTitle title="History sidebar title" />,
+      rightSidebarContent: ''
+    }
+  },
+  {
+    path: '/share-orobo',
+    name: 'Share Status',
+    authorized: true,
+    exact: true,
+    children: {
+      mainTop: <HeaderTitle title="Share Orobo" />,
+      mainContent: <ShareOrobo />,
+      rightSideBarTop: <HeaderTitle title="Sidebar title" />,
       rightSidebarContent: ''
     }
   }
@@ -183,7 +196,7 @@ class App extends Component {
               <Route exact path="/reset-password" component={ResetPassword}/>
               
               <PrivateRoute path="/success" component={SuccessfulRegistration}/>
-              <PrivateRoute path="/bill-payment-success" component={PayBillSuccess}/>
+              <PrivateRoute path="/payment-success" component={PayBillSuccess}/>
               
               {DashboardRoutes.map((route, index) => (
                 route.authorized ? (

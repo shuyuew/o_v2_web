@@ -35,6 +35,7 @@ export default {
   PAY_BILL: API_BASE_URL + 'bills/pay.json',
   CANCEL_BILL_PAYMENT: API_BASE_URL +  'bills/cancel.json',
   CONFIRM_FULFILLMENT: API_BASE_URL + 'bills/confirm_fulfillment.json',
+  CREATE_TRANSFER: API_BASE_URL + 'transfer_requests/create.json',
   
   // REGEXES
   EMAIL_REGEX: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,

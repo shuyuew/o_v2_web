@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import UserAuth from '../API/auth';
 
+let UserData;
+
 const offsetLinks = [
   {
       label: 'Beneficiaries',
@@ -25,7 +27,7 @@ const offsetLinks = [
   },
   {
       label: 'Share Orobo',
-      url: '#',
+      url: '/share-orobo',
       icon: 'fa-share-alt'
   },
   {
@@ -57,6 +59,10 @@ class OffCanvas extends Component {
     if (e.target.classList.contains('active')) {
       this.setState({ showHideSidenav: '' });
     }
+  }
+
+  componentDidMount() {
+    UserData = UserAuth.getUserData();
   }
 
   render() {
