@@ -84,7 +84,7 @@ class Login extends Component {
         
         <div>
           
-          <NotificationSystem ref={(NotificationSystem) => { this.toastr = NotificationSystem; }} />
+          <NotificationSystem className="toast-top-center" ref={(NotificationSystem) => { this.toastr = NotificationSystem; }} />
           
           <Loader showWhenTrue={inProgress} />
           

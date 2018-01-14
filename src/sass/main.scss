@@ -35,6 +35,11 @@ img {
   }
 }
 
+.notifications-tr {
+  right: auto !important;
+  left: 50% !important;
+  transform: translateX(-50%);
+}
 
 
 // Global

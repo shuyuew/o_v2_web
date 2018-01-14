@@ -3,8 +3,6 @@ import UserAuth from '../API/auth';
 
 const UserData = UserAuth.getUserData();
 
-console.log(UserData);
-
 const ShareOrobo = (props) => (
   <div className="share-orobo text-center">
     

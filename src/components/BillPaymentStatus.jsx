@@ -19,7 +19,6 @@ class BillPaymentStatus extends Component {
     this.confirmPayment = this.confirmPayment.bind(this);
     this.cancelPayment = this.cancelPayment.bind(this);
     this.openDispute = this.openDispute.bind(this);
-    this.contactSupport = this.contactSupport.bind(this);
   }
 
   confirmPayment() {
@@ -89,11 +88,10 @@ class BillPaymentStatus extends Component {
   }
 
   openDispute() {
-    console.log('open dispute');
-  }
-
-  contactSupport() {
-    console.log('contact support');
+    this.toastr.addNotification({
+      message: 'Dispute opened.',
+      level: 'success'
+    });
   }
 
   render() {
@@ -106,7 +104,7 @@ class BillPaymentStatus extends Component {
     return (
       <div className="bill-payment-status">
 
-        <NotificationSystem ref={(NotificationSystem) => { this.toastr = NotificationSystem; }} />  
+        <NotificationSystem className="toast-top-center" ref={(NotificationSystem) => { this.toastr = NotificationSystem; }} />  
         <Loader showWhenTrue={inProgress} />
       
         {!availableInfo && <h1>Nothing found.</h1>}
@@ -205,13 +203,13 @@ class BillPaymentStatus extends Component {
                   <button type="button" onClick={this.confirmPayment}>Confirm Payment</button>
                   <button type="button" onClick={this.cancelPayment}>Cancel Bill</button>
                   <button type="button" onClick={this.openDispute}>Open Dispute</button>
-                  <a href="mailto:">Contact Support</a>
+                  <a href="mailto:support@orobo.com">Contact Support</a>
                 </div>
               }
 
               {availableInfo.beneficiary && 
                 <div>
-                  <a href="mailto:">Contact Support</a>
+                  <a href="mailto:support@orobo.com">Contact Support</a>
                 </div>
               }
 
@@ -246,8 +244,6 @@ const getChannels = (listing) => {
     });
 
   }
-
-  console.log(channelsListing);
 
   return channelsListing;
 

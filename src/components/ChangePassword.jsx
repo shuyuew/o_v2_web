@@ -81,7 +81,7 @@ class ChangePassword extends Component {
         
         <Loader showWhenTrue={inProgress} />
         
-        <NotificationSystem ref={(NotificationSystem) => { this.toastr = NotificationSystem; }} />
+        <NotificationSystem className="toast-top-center" ref={(NotificationSystem) => { this.toastr = NotificationSystem; }} />
         
         <form onSubmit={this.handleSubmit} autoComplete="off">
           

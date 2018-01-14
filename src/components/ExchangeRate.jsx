@@ -146,7 +146,7 @@ class ExchangeRate extends Component {
       <div className="exchange-rate">
         
         <Loader showWhenTrue={inProgress} />
-        <NotificationSystem ref={(NotificationSystem) => { this.toastr = NotificationSystem; }} />
+        <NotificationSystem className="toast-top-center" ref={(NotificationSystem) => { this.toastr = NotificationSystem; }} />
         
         <div className="exchange-rate__wrapper">
           <form name="exchangeForm" onSubmit={this.handleSubmit}>

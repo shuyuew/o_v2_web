@@ -9,8 +9,13 @@ import {
   Route,
   Switch
 } from 'react-router-dom';
+import { createStore } from 'redux'
+import { Provider } from 'react-redux'
 import { StripeProvider } from 'react-stripe-elements';
 import CONFIG from './data/config.js';
+import oroboApp from './reducers';
+
+let store = createStore(oroboApp);
 
 
 // Components
@@ -24,6 +29,7 @@ import HomeBackground from './components/HomeBackground';
 import NotFound from './components/NotFound';
 import Dashboard from './components/Dashboard';
 import PaymentSteps from './components/PaymentSteps';
+import BillSteps from './components/BillSteps';
 import ShareOrobo from './components/ShareOrobo';
 import PaymentWizard from './components/PaymentWizard';
 import PayBills from './components/PayBills';
@@ -50,7 +56,7 @@ const DashboardRoutes = [
     authorized: true,
     exact: true,
     children: {
-      mainTop: <HeaderTitle title="Send Money" />,
+      mainTop: <PaymentSteps />,
       mainContent: <PaymentWizard />,
       rightSideBarTop: <HeaderTitle title="Exchange Rate" />,
       rightSidebarContent: <ExchangeRate />
@@ -62,7 +68,7 @@ const DashboardRoutes = [
     authorized: true,
     exact: true,
     children: {
-      mainTop: <HeaderTitle title="Pay Bills" />,
+      mainTop: <BillSteps />,
       mainContent: <PayBills />,
       rightSideBarTop: <BillersTitle />,
       rightSidebarContent: <MyBillers />
@@ -183,43 +189,45 @@ class App extends Component {
 
   render() {      
     return (
-      <Router>
-        <StripeProvider apiKey={CONFIG.STRIPE_KEY}>
-      
-          <HomeBackground>
-            <Switch>
-              
-              <HomepageRoute exact path="/" context={{ title: 'Heroes List' }} />
-              <Route exact path="/login" component={Login}/>
-              <Route exact path="/sign-up" component={Registration}/>
-              <Route exact path="/forgot-password" component={(props) => <ForgotPassword routeData={props} />}/>
-              <Route exact path="/reset-password" component={ResetPassword}/>
-              
-              <PrivateRoute path="/success" component={SuccessfulRegistration}/>
-              <PrivateRoute path="/payment-success" component={PayBillSuccess}/>
-              
-              {DashboardRoutes.map((route, index) => (
-                route.authorized ? (
-                  <PrivateRoute 
-                    key={index}
-                    exact={route.exact}
-                    path={route.path}
-                    component={(props) => <Dashboard routeData={props} childComponents={route.children} />}/>
-                ) : (
-                  <Route 
-                    key={index}
-                    exact={route.exact}
-                    path={route.path}
-                    component={(props) => <Dashboard routeData={props} childComponents={route.children} />}/>
-                )
-              ))}
-              
-              <Route component={NotFound}/>
-            </Switch>
-          </HomeBackground>
-          
-        </StripeProvider>
-      </Router>
+      <Provider store={store}>
+        <Router>
+          <StripeProvider apiKey={CONFIG.STRIPE_KEY}>
+        
+            <HomeBackground>
+              <Switch>
+                
+                <HomepageRoute exact path="/" context={{ title: 'Heroes List' }} />
+                <Route exact path="/login" component={Login}/>
+                <Route exact path="/sign-up" component={Registration}/>
+                <Route exact path="/forgot-password" component={(props) => <ForgotPassword routeData={props} />}/>
+                <Route exact path="/reset-password" component={ResetPassword}/>
+                
+                <PrivateRoute path="/success" component={SuccessfulRegistration}/>
+                <PrivateRoute path="/payment-success" component={PayBillSuccess}/>
+                
+                {DashboardRoutes.map((route, index) => (
+                  route.authorized ? (
+                    <PrivateRoute 
+                      key={index}
+                      exact={route.exact}
+                      path={route.path}
+                      component={(props) => <Dashboard routeData={props} childComponents={route.children} />}/>
+                  ) : (
+                    <Route 
+                      key={index}
+                      exact={route.exact}
+                      path={route.path}
+                      component={(props) => <Dashboard routeData={props} childComponents={route.children} />}/>
+                  )
+                ))}
+                
+                <Route component={NotFound}/>
+              </Switch>
+            </HomeBackground>
+            
+          </StripeProvider>
+        </Router>
+      </Provider>
     )
   }
 

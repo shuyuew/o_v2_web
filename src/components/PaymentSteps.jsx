@@ -1,21 +1,31 @@
-import React, { Component } from 'react';
+import React from 'react';
+import { connect } from 'react-redux';
 
-class PaymentSteps extends Component {
+const SendPaymentProgress = ({title, steps}) => (
+  <div>
+    <div className="payment-steps-title">{title}</div>
+      <div className="payment-steps">
+        {steps.map((step) => {
+          let stepClass = '';
+          stepClass += step.isActive ? 'active' : '';
+          stepClass += step.isProcessed ? ' processed' : '';
+          return (
+            <span key={step.id} className={stepClass}></span>
+          )
+        })}    
+    </div>    
+  </div>
+)
 
-  render() {
-    return (
-      <div>
-        <div className="payment-steps-title">Select Beneficiary</div>
-        <div className="payment-steps">
-          <span className="active"></span>
-          <span></span>
-          <span></span>
-          <span></span>
-        </div>
-      </div>
-    );
+const mapStateToProps = state => {
+  return {
+    title: state.sendMoneySteps.title,
+    steps: state.sendMoneySteps.steps
   }
+};
 
-}
+const PaymentSteps = connect(
+  mapStateToProps
+)(SendPaymentProgress);
 
 export default PaymentSteps;

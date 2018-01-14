@@ -8,6 +8,12 @@ import NotificationSystem from 'react-notification-system';
 import Loader from './Loader';
 import Config from '../data/config';
 import { confirm } from './confirm';
+import PropTypes from 'prop-types';
+
+import {
+  sendPaymentBackward,
+  sendPaymentForward
+} from '../actions';
 
 let UserData, serviceFee = 0.00, exchangeAmount = 0.00, exchangeRate = 0.00;
 
@@ -31,6 +37,7 @@ class PaymentWizard extends Component {
     this.onInputBlur = this.onInputBlur.bind(this);
     this.onStepUpdate = this.onStepUpdate.bind(this);
     this.sendMoney = this.sendMoney.bind(this);
+
   }
 
   sendMoney() {
@@ -61,7 +68,8 @@ class PaymentWizard extends Component {
             } else {
               that.toastr.addNotification({
                 message: response.data.PayLoad.error[0],
-                level: 'error'
+                level: 'error',
+                autoDismiss: 0
               });
               that.setState({ inProgress: false });
             }
@@ -93,6 +101,10 @@ class PaymentWizard extends Component {
       });
     } else {
       this.setState({ step: 3 });
+      this.context.store.dispatch(sendPaymentForward({
+        title: 'Confirm Transfer',
+        activeState: 3
+      }));
     }
   }
 
@@ -159,7 +171,12 @@ class PaymentWizard extends Component {
       this.setState({
         step: 2,
         selectedBeneficiary: data
-      });      
+      });
+      
+      this.context.store.dispatch(sendPaymentForward({
+        title: 'Select Amount',
+        activeState: 2
+      }));
     }, () => {
       console.log('cancel!');
     });
@@ -167,6 +184,21 @@ class PaymentWizard extends Component {
   }
 
   goToPreviousStep() {
+    switch (this.state.step) {
+      case 2:
+      this.context.store.dispatch(sendPaymentBackward({
+        title: 'Select Beneficiary',
+        activeState: 1
+      }));
+      break;
+
+      case 3:
+      this.context.store.dispatch(sendPaymentBackward({
+        title: 'Select Amount',
+        activeState: 2
+      }));
+      break;
+    }
     this.setState({ step: this.state.step-1 });
   }
   
@@ -202,7 +234,7 @@ class PaymentWizard extends Component {
     return (
       <div className="orobo-payment">
 
-        <NotificationSystem ref={(NotificationSystem) => { this.toastr = NotificationSystem; }} />
+        <NotificationSystem className="toast-top-center" ref={(NotificationSystem) => { this.toastr = NotificationSystem; }} />
         
         <Loader showWhenTrue={inProgress} />
 
@@ -324,6 +356,10 @@ class PaymentWizard extends Component {
     );
   }
 
+}
+
+PaymentWizard.contextTypes = {
+  store: PropTypes.object
 }
 
 export default withRouter(PaymentWizard);

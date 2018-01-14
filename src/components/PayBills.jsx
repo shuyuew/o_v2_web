@@ -8,6 +8,12 @@ import ActiveBillers from './ActiveBillers';
 import UserAuth from '../API/auth';
 import NotificationSystem from 'react-notification-system';
 import Loader from './Loader';
+import PropTypes from 'prop-types';
+
+import {
+  payBillForward,
+  payBillBackward
+} from '../actions';
 
 let UserData, sendingAmount, exchangeRate, serviceFee, receivingAmount;
 
@@ -83,7 +89,8 @@ class PayBills extends Component {
             } else {
               that.toastr.addNotification({
                 message: response.data.PayLoad.error[0],
-                level: 'error'
+                level: 'error',
+                autoDismiss: 0
               });
               that.setState({ inProgress: false });
             }
@@ -125,6 +132,28 @@ class PayBills extends Component {
   }
 
   goToPreviousStep() {
+    switch (this.state.step) {
+      case 5:
+        this.context.store.dispatch(payBillBackward({
+          title: 'Select a Biller',
+          activeState: 3
+        }));
+      break;
+
+      case 3:
+        this.context.store.dispatch(payBillBackward({
+          title: 'Select a Location',
+          activeState: 2
+        }));
+      break;
+
+      case 2:
+        this.context.store.dispatch(payBillBackward({
+          title: 'Select a Category',
+          activeState: 1
+        }));
+      break;
+    }
     this.setState({
       step: this.state.step-1
     });
@@ -160,6 +189,11 @@ class PayBills extends Component {
           step: 2,
           selectedCategory: data
         });
+
+        this.context.store.dispatch(payBillForward({
+          title: 'Select a Location',
+          activeState: 2
+        }));
       break;
 
       case 2: // Location
@@ -180,6 +214,11 @@ class PayBills extends Component {
             selectedLocation: data,
             inProgress: false
           });
+
+          this.context.store.dispatch(payBillForward({
+            title: 'Select a Biller',
+            activeState: 3
+          }));
         }, (error) => {
           console.log(error);
           this.setState({ inProgress: false });
@@ -211,6 +250,11 @@ class PayBills extends Component {
           selectedBill: data,
           selectedBillOption: data.bill_options[0]
         });
+
+        this.context.store.dispatch(payBillForward({
+          title: 'Confirm Payment',
+          activeState: 4
+        }));
       break;
 
       case 5:
@@ -349,7 +393,7 @@ class PayBills extends Component {
       
       <div className="pay-bills">
 
-        <NotificationSystem ref={(NotificationSystem) => { this.toastr = NotificationSystem; }} />
+        <NotificationSystem className="toast-top-center" ref={(NotificationSystem) => { this.toastr = NotificationSystem; }} />
         <Loader showWhenTrue={inProgress} />
 
         <form onSubmit={this.handleSubmit} autoComplete="off">
@@ -559,5 +603,11 @@ const getBillCollectedData = (billId, listing) => {
   }
   return collectedData;
 }
+
+
+PayBills.contextTypes = {
+  store: PropTypes.object
+}
+
 
 export default withRouter(PayBills);
