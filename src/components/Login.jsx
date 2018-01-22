@@ -42,7 +42,7 @@ class Login extends Component {
         UserAuth.authorize();
         
         setTimeout(() => {
-          this.props.history.push('/my-profile');
+          this.props.history.push('/send-money');
         }, 1000);
       } else {
         this.toastr.addNotification({

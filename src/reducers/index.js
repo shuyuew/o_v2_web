@@ -54,7 +54,7 @@ const payBillInitState = {
 
 function sendMoneySteps(state = sendMoneyInitState, action) {
   let updatedList = state.steps;
-  console.log(updatedList);
+  
   switch(action.type) {
 
     case 'SEND_PAYMENT_FORWARD':

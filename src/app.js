@@ -196,9 +196,9 @@ class App extends Component {
             <HomeBackground>
               <Switch>
                 
-                <HomepageRoute exact path="/" context={{ title: 'Heroes List' }} />
+                <HomepageRoute exact path="/" />
                 <Route exact path="/login" component={Login}/>
-                <Route exact path="/sign-up" component={Registration}/>
+                <Route path="/sign-up" component={Registration}/>
                 <Route exact path="/forgot-password" component={(props) => <ForgotPassword routeData={props} />}/>
                 <Route exact path="/reset-password" component={ResetPassword}/>
                 

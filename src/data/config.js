@@ -36,6 +36,27 @@ export default {
   CANCEL_BILL_PAYMENT: API_BASE_URL +  'bills/cancel.json',
   CONFIRM_FULFILLMENT: API_BASE_URL + 'bills/confirm_fulfillment.json',
   CREATE_TRANSFER: API_BASE_URL + 'transfer_requests/create.json',
+
+  // REGISTRATION FORM DATA
+  formInfo: {
+    email: {
+      title: 'email',
+      message: 'Provide a valid email address.'
+    },
+    phone: {
+      title: 'phone',
+      message: 'Enter your mobile number.'
+    },
+    password: {
+      title: 'password',
+      message: 'Enter your selected password.',
+      info: '(7 characters upper and lower case + 1 special character)'
+    },
+    user: {
+      title: 'you',
+      message: 'Enter your personal details.'
+    }
+  },
   
   // REGEXES
   EMAIL_REGEX: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,

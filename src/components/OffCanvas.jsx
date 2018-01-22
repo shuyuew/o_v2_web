@@ -75,7 +75,7 @@ class OffCanvas extends Component {
             return;
           }
           
-          item.clickAction(() => history.push('/'));
+          item.clickAction(() => history.push('/login'));
         }} key={index} to={item.url}>
         <span>
           <i className={'fa ' + item.icon} aria-hidden="true"></i>

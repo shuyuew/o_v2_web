@@ -1,5 +1,33 @@
 .share-orobo {
 
+  .sharing-buttons {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    button, a {
+      text-decoration: none;
+      appearance: none;
+      padding: 10px 15px;
+      margin: 10px;
+    }
+
+    button {
+      font-size: 12px;
+      text-transform: uppercase;
+      font-weight: bold;
+      color: #fff;
+      background-color: #3b5998;
+      border: none;
+      border-radius: 3px;
+      transition: all 0.3s ease;
+
+      &:hover {
+        background-color: darken(#3b5998, 5%);
+      }
+    }
+  }
+
   &__referal {
     margin-bottom: 25px;
     padding-bottom: 20px;
