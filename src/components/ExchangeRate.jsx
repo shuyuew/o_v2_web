@@ -25,14 +25,7 @@ class ExchangeRate extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.currencyUpdate = this.currencyUpdate.bind(this);
     this.amountUpdate = this.amountUpdate.bind(this);
-    this.handleDirectionChange = this.handleDirectionChange.bind(this);
   }
-
-
-  handleDirectionChange(e) {
-    this.setState({ direction: parseInt(e.target.value) });
-  }
-  
   
   handleSubmit(event) {
     event.preventDefault();
@@ -137,7 +130,6 @@ class ExchangeRate extends Component {
       receivingCurrency,
       sendingCurrency,
       exchange_rate,
-      direction,
       receiving_amount,
       fee
     } = this.state;
@@ -193,16 +185,6 @@ class ExchangeRate extends Component {
                 </div>
               </div>
             </div>
-
-            <div className="exchange-rate__direction">
-              <div>Direction:</div>
-              <label>
-                <input type="radio" name="direction" value={1} checked={direction === 1} onChange={this.handleDirectionChange}/> Forwards
-              </label>
-              <label>
-                <input type="radio" name="direction" value={0} checked={direction === 0} onChange={this.handleDirectionChange}/> Backwards
-              </label>
-            </div>
             
             <div className="exchange-rate__amount">
               <label htmlFor="exchange_amount">Amount:</label>
@@ -220,11 +202,11 @@ class ExchangeRate extends Component {
                   <span>{sendingCurrency.currency_symbol + parseFloat(fee).toFixed(2)}</span>
                 </div>
                 <div>
-                  <span>Sending Amount:</span>
+                  <span>You Send:</span>
                   <span>{sendingCurrency.currency_symbol + parseFloat(amount).toFixed(2)}</span>
                 </div>
                 <div>
-                  <span>Receiving Amount:</span>
+                  <span>They Get:</span>
                   <span>{receivingCurrency.currency_symbol + parseFloat(receiving_amount).toFixed(2)}</span>
                 </div>
               </div>

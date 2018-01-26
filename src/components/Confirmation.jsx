@@ -32,7 +32,7 @@ class Confirmation extends Component {
 
           <Modal.Footer>
             <Button onClick={cancel}>{cancelLabel}</Button>
-            <Button className='button-l' bsStyle="primary" onClick={proceed}>{okLabbel}</Button>
+            <Button className='button-l' bsStyle="success" onClick={proceed}>{okLabbel}</Button>
           </Modal.Footer>
           
         </Modal>

@@ -7,8 +7,8 @@ const NavLinks = [
     slug: '/send-money'
   },
   {
-    label: 'Pay Bills',
-    slug: '/pay-bills'
+    label: 'Pay Bill',
+    slug: '/pay-bill'
   },
   {
     label: 'My Card',

@@ -371,12 +371,16 @@ class Registration extends Component {
   }
 
   componentDidMount() {
+
+    const referralCode = getParameterByName('ref');
+
     OroboAPI.getSendingCurrencies().then((response) => {
       if (response.data.PayLoad.status) {
         this.setState({
           sendingCurrencies: response.data.PayLoad.data.currencies,
           selectedCurrency: response.data.PayLoad.data.currencies[0],
-          country_currency_id: response.data.PayLoad.data.currencies[0].id
+          country_currency_id: response.data.PayLoad.data.currencies[0].id,
+          referral_code: referralCode
         });
       }
     });
@@ -495,6 +499,15 @@ class Registration extends Component {
                     onChange={this.onInputUpdate} 
                     value={last_name}/>
                 </div>
+
+                <div className="form-group has-border">
+                  <input 
+                    type="text" 
+                    name="referral_code"
+                    placeholder="Referral code goes here"
+                    onChange={this.onInputUpdate} 
+                    value={referral_code}/>
+                </div>
               </div>
             }
             
@@ -514,5 +527,16 @@ class Registration extends Component {
   }
 
 }
+
+const getParameterByName = (name, url) => {
+  if (!url) url = window.location.href;
+  name = name.replace(/[\[\]]/g, "\\$&");
+  var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+      results = regex.exec(url);
+  if (!results) return null;
+  if (!results[2]) return '';
+  return decodeURIComponent(results[2].replace(/\+/g, " "));
+}
+
 
 export default Registration;

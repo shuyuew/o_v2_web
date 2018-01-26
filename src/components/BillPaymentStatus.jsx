@@ -111,6 +111,12 @@ class BillPaymentStatus extends Component {
 
         {availableInfo &&
           <div className="bill-info">
+
+            <div className="bill-info__go-back">
+              <button type="button" onClick={() => { this.props.history.push('/history') }}>
+                <i className="fa fa-long-arrow-left" aria-hidden="true"></i> Go back
+              </button>
+            </div> 
             
             <div className="bill-info__header text-center">
               <div>{availableInfo.bill_provider ? 'Bill Reference (OBR)' : 'Transfer Reference'}</div>

@@ -24,6 +24,7 @@ import Registration from './components/Registration';
 import ForgotPassword from './components/ForgotPassword';
 import ResetPassword from './components/ResetPassword';
 import SuccessfulRegistration from './components/RegistrationSuccess';
+import Welcome from './components/Welcome';
 import PayBillSuccess from './components/PayBillSuccess';
 import HomeBackground from './components/HomeBackground';
 import NotFound from './components/NotFound';
@@ -63,8 +64,8 @@ const DashboardRoutes = [
     }
   },
   {
-    path: '/pay-bills',
-    name: 'Pay Bills',
+    path: '/pay-bill',
+    name: 'Pay Bill',
     authorized: true,
     exact: true,
     children: {
@@ -204,6 +205,7 @@ class App extends Component {
                 
                 <PrivateRoute path="/success" component={SuccessfulRegistration}/>
                 <PrivateRoute path="/payment-success" component={PayBillSuccess}/>
+                <PrivateRoute path="/welcome" component={Welcome}/>
                 
                 {DashboardRoutes.map((route, index) => (
                   route.authorized ? (

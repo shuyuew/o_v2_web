@@ -90,7 +90,7 @@ class NewBiller extends Component {
         });
 
         setTimeout(() => {
-          this.props.history.push('/pay-bills');
+          this.props.history.push('/pay-bill');
         }, 3500);
       } else {
 
@@ -194,7 +194,7 @@ class NewBiller extends Component {
             </div>
           }
           
-          <h4 className="form-group-title">Biller's Info</h4>
+          <h4 className="form-group-title">Biller's Information</h4>
           
           <HomepageInput 
             type="text"
@@ -268,6 +268,9 @@ class NewBiller extends Component {
               </select>
             </div>
           }
+
+          <br/>
+          <h4 className="form-group-title">Biller's Banking Information</h4>
 
           {biller_banks.length > 0 &&
             <div className="form-group">

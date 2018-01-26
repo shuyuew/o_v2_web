@@ -329,7 +329,7 @@ class PaymentWizard extends Component {
                 </div>
                 <div>
                   <span>{UserData.country_currency.currency_symbol + beneficiary_send}</span>
-                  <span>Free Inclusive</span>
+                  <span>Fee Inclusive</span>
                 </div>
               </li>
 

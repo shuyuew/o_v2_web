@@ -15,28 +15,33 @@ class Beneficiaries extends Component {
     
     return (
       <div className="orobo-beneficiaries">
-        <h1 className="orobo-title">My Beneficiaries</h1> 
+        <h1 className="orobo-title orobo-title--has-btn">
+          My Beneficiaries
+
+          <div className="add-new-beneficiary">
+            <Link to="/add-beneficiary">
+              <i className="fa fa-plus" aria-hidden="true"/>
+            </Link>
+          </div>
+        </h1> 
 
         {list.length > 0 && 
-          list.map((item) => (
-            <Beneficiary
-              key={item.id}
-              info={item}
-              selected={beneficiary}
-              selectBeneficiary={beneficiarySelect}/>
-          ))
+          <div className="orobo-beneficiaries__list">
+            {
+              list.map((item) => (
+                <Beneficiary
+                  key={item.id}
+                  info={item}
+                  selected={beneficiary}
+                  selectBeneficiary={beneficiarySelect}/>
+              ))
+            }
+          </div>
         }
     
         {list.length === 0 &&
           <div className="no-beneficiaries">No beneficiares added.</div>
         }
-        
-        
-        <div className="add-new-beneficiary text-right">
-          <Link to="/add-beneficiary">
-            Add new beneficiary <i className="fa fa-plus" aria-hidden="true"/>
-          </Link>
-        </div>
       
       </div>
     );

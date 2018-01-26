@@ -12,7 +12,7 @@ const offsetLinks = [
   },
   {
       label: 'Pay Bills',
-      url: '/pay-bills',
+      url: '/pay-bill',
       icon: 'fa-list-alt'
   },
   {

@@ -411,40 +411,48 @@ class PayBills extends Component {
                 selectedCountry={selectedCurrency} />
 
               <h4 className="step-title">Select a Category:</h4>
-              <BillListing 
-                list={categories} 
-                selectionUpdate={this.selectOption} 
-                activeListing={selectedCategory.id} />
+              <div className="bill-list">
+                <BillListing 
+                  list={categories} 
+                  selectionUpdate={this.selectOption} 
+                  activeListing={selectedCategory.id} />
+              </div>
             </div>
           }
           
           {step === 2 && 
             <div>
               <h4 className="step-title">Select Location:</h4>
-              <BillListing 
-                list={states} 
-                selectionUpdate={this.selectOption}
-                activeListing={selectedLocation.id} />
+              <div className="bill-list">
+                <BillListing 
+                  list={states} 
+                  selectionUpdate={this.selectOption}
+                  activeListing={selectedLocation.id} />
+              </div>
             </div>
           }
 
           {step === 3 && 
             <div>
               <h4 className="step-title">Select Biller:</h4>
-              <ActiveBillers
-                billerUpdate={this.selectOption}
-                activeBiller={selectedBiller.id}
-                list={billers} />
+              <div className="bill-list">
+                <ActiveBillers
+                  billerUpdate={this.selectOption}
+                  activeBiller={selectedBiller.id}
+                  list={billers} />
+              </div>
             </div>
           }
 
           {step === 4 && 
             <div>
               <h4 className="step-title">Select Bill:</h4>
-              <BillListing 
-                list={bills} 
-                selectionUpdate={this.selectOption}
-                activeListing={selectedBill.id} />
+              <div className="bill-list">
+                <BillListing 
+                  list={bills} 
+                  selectionUpdate={this.selectOption}
+                  activeListing={selectedBill.id} />
+              </div>
             </div>
           }
 
@@ -463,7 +471,7 @@ class PayBills extends Component {
                   <h5 className="bill-details__title text-uppercase">Select Option</h5>
 
                   <div className="form-group">
-                    <label htmlFor="select_option">Select Option</label>
+                    <label htmlFor="select_option">Option</label>
                     <select name="bill_option" id="select_option" value={selectedBillOption.id || selectedBill.bill_options[0].id} className="form-control" onChange={this.updateBillOption} required>
                       {selectedBill.bill_options.map((item) => (
                         <option key={item.id} value={item.id}>{item.title}</option>
@@ -495,7 +503,7 @@ class PayBills extends Component {
 
                             {field.bill_field_type_id === 2 &&
                               <select name={field.title} id={'field-' + field.id} required value={field.value || 0} onChange={this.updateReqField} className="form-control">
-                                <option value="0" disabled>Select option</option>
+                                <option value="0" disabled>Select Option</option>
                                 {field.select_options.split(';').map((option) => (
                                   <option key={option} value={option}>{option}</option>
                                 ))}

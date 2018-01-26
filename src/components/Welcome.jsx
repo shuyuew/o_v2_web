@@ -1,12 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import UserAuth from '../API/auth';
 
 
-const PayBillSuccess = (props) => {
-  
-  const billReference = props.location.state.detail.reference;
-  const UserData = UserAuth.getUserData();
+const Welcome = (props) => {
 
   return (
     <div className="orobo-box orobo-box--success orobo-box--bill-payment">
@@ -17,17 +13,15 @@ const PayBillSuccess = (props) => {
         </div>
         
         <div className="orobo-box__message text-uppercase text-center">
-          <span>Smile {UserData.first_name}!</span>
-          <span>Your payment is being verified</span>
-          <span>BILL REFERENCE: {billReference}</span>
+          <span className="white-welcome">Bill payments across Africa</span>
         </div>
         
         <div className="orobo-box__success-cta">
           <div>
-            <Link to="/my-profile" className="text-uppercase">Home</Link>
+            <Link to="/pay-bill" className="text-uppercase">Pay Bill</Link>
           </div>
           <div>
-            <Link to="/pay-bill" className="text-uppercase">Pay Bill</Link>
+            <Link to="/send-money" className="text-uppercase">Send Money</Link>
           </div>
         </div>
         
@@ -36,4 +30,4 @@ const PayBillSuccess = (props) => {
   )
 }
 
-export default PayBillSuccess;
+export default Welcome;

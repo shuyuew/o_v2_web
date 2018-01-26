@@ -19,7 +19,7 @@ const RegistrationSuccess = (props) => {
         
         <div className="orobo-box__success-cta">
           <div>
-            <Link to="/pay-bills" className="text-uppercase">Pay bill</Link>
+            <Link to="/pay-bill" className="text-uppercase">Pay bill</Link>
           </div>
           <div>
             <Link to="/send-money" className="text-uppercase">Send money</Link>
