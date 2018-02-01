@@ -19,6 +19,7 @@ let store = createStore(oroboApp);
 
 
 // Components
+import Homepage from './components/Homepage';
 import Login from './components/Login';
 import Registration from './components/Registration';
 import ForgotPassword from './components/ForgotPassword';
@@ -197,7 +198,7 @@ class App extends Component {
             <HomeBackground>
               <Switch>
                 
-                <HomepageRoute exact path="/" />
+                <Route exact path="/" component={Homepage}/>
                 <Route exact path="/login" component={Login}/>
                 <Route path="/sign-up" component={Registration}/>
                 <Route exact path="/forgot-password" component={(props) => <ForgotPassword routeData={props} />}/>

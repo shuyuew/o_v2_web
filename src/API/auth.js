@@ -20,6 +20,7 @@ const UserAuth = {
   logOut(cb) {
     OroboCookies.removeCookie('User');
     OroboCookies.removeCookie('isAuthorized');
+    OroboCookies.removeCookie('Action');
     this.isAuthenticated = false;
     if (cb) {
       cb();

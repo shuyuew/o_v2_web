@@ -7,14 +7,14 @@ class HomeBackground extends Component {
 
   render() {
     
-    const TitleRoutes = ['/', '/login', '/forgot-password', '/success'];
+    const TitleRoutes = ['/login', '/forgot-password', '/success'];
     const { location } = this.props;
     let wrapStyle = {};
     
     switch (location.pathname) {
       
       case '/':
-        wrapStyle.backgroundImage = 'url(http://fakeimg.pl/1400x900/ededed/27a6df)';
+        // wrapStyle.backgroundImage = 'url(http://fakeimg.pl/1400x900/ededed/27a6df)';
       break;
       
       case '/login':

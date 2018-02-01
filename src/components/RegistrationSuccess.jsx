@@ -8,7 +8,9 @@ const RegistrationSuccess = (props) => {
       <div>
         
         <div className="orobo-box__check text-center">
-          <img src="http://fakeimg.pl/170x200/ededed/27a6df" alt="Check Smiley"/>
+          <a href="/">
+            <img src="/images/dashboard-logo.png" alt="Orobo Logo"/>
+          </a>
         </div>
         
         <div className="orobo-box__message text-uppercase text-center">

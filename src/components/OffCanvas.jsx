@@ -75,7 +75,7 @@ class OffCanvas extends Component {
             return;
           }
           
-          item.clickAction(() => history.push('/login'));
+          item.clickAction(() => { window.location.href = '/'; });
         }} key={index} to={item.url}>
         <span>
           <i className={'fa ' + item.icon} aria-hidden="true"></i>
@@ -98,7 +98,9 @@ class OffCanvas extends Component {
           <div>
             
             <div className="orobo-menu__logo">
-              <img src="http://fakeimg.pl/390x145/ededed/27a6df" width="390" height="145" alt="Logo"/>
+              <a href="/">
+                <img src="/images/dashboard-logo.png" alt="Orobo Logo"/>
+              </a>
             </div>
             
             <div className="orobo-menu__links">

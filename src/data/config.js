@@ -21,6 +21,9 @@ export default {
   ACTIVE_BILLERS: API_BASE_URL + 'bills/list_billers.json',
   MY_BILLERS: API_BASE_URL + 'bills/my_billers.json',
   BILLER_BILLS: API_BASE_URL + 'bills/list_bills_by_biller.json',
+
+  PUBLIC_FEE: API_BASE_URL + 'public/calculate_fee.json',
+  PUBLIC_CATEGORIES: API_BASE_URL + 'public/list_categories.json',
   
   // POST/PUT
   REGISTER_USER: API_BASE_URL + 'users/add.json',

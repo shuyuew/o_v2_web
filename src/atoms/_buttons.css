@@ -1,0 +1,133 @@
+button,
+button[class*="icon-"],
+input[type="submit"],
+input[type="disabled"],
+input[type="reset"],
+input[class^="icon-"] {
+    border: none;
+}
+
+button.toggle {
+    background-color: transparent;
+}
+
+[class*="button-"] {
+    position: relative;
+    display: inline-block;
+    border-radius: .25rem;
+    padding: 1rem 1.5rem;
+    transition: background-color 200ms ease-in-out;
+    text-align: center;
+    color: #fff;
+    cursor: pointer;
+    line-height: 1;
+}
+
+[class*="button-"]:hover,
+[class*="button-"]:focus,
+[class*="button-"]:active {
+    color: #fff;
+}
+
+[class*="button-"] [class*="icon-"]:before {
+    top: 50%;
+    left: .5rem;
+    transform: translateY(-40%);
+    position: absolute;
+    color: inherit;
+}
+
+[class*="button-"] [class*="icon-"] + * {
+    margin-left: 1.5rem;
+}
+
+.button-cta {
+    background-color: #0badf2;
+}
+
+.button-cta:hover,
+.button-cta:focus,
+.button-cta:active {
+    background-color: #0badf2;
+    lightness: +5%;
+}
+
+.button-cta [class*="icon-"]:before {
+    color: inherit;
+}
+/*
+.button-secondary {
+    background-color: var(--color-brand-green);
+}
+
+.button-secondary:hover,
+.button-secondary:focus,
+.button-secondary:active {
+    background-color: color(var(--color-brand-green) lightness(+5%));
+}
+
+.button-subtle {
+    background-color: none;
+    color: var(--color-brand-blue);
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.button-subtle:hover,
+.button-subtle:focus,
+.button-subtle:active {
+    color: color(var(--color-brand-blue) lightness(+5%));
+}
+
+.button-email {
+    background-color: var(--color-brand-blue);
+}*/
+
+.button-email:hover,
+.button-email:focus,
+.button-email:active {
+    background-color: color(var(--color-brand-blue) lightness(+5%));
+}
+
+.button-fb-messenger-web,
+.button-fb-messenger-dl {
+    background-color: var(--color-fb-messenger-blue);
+}
+
+.button-fb-messenger-web:hover,
+.button-fb-messenger-dl:hover,
+.button-fb-messenger-web:focus,
+.button-fb-messenger-dl:focus,
+.button-fb-messenger-web:active,
+.button-fb-messenger-dl:active {
+    background-color: color(var(--color-fb-messenger-blue) lightness(+5%));
+}
+
+.button-facebook {
+    background-color: var(--color-facebook-blue);
+}
+
+.button-facebook:hover,
+.button-facebook:focus,
+.button-facebook:active {
+    background-color: color(var(--color-facebook-blue) lightness(+5%));
+}
+
+.button-whatsapp {
+    background-color: var(--color-whatsapp-green);
+}
+
+.button-whatsapp:hover,
+.button-whatsapp:focus,
+.button-whatsapp:active {
+    background-color: color(var(--color-whatsapp-green) lightness(+5%));
+}
+
+.button-disabled,
+.button-disabled:hover,
+.button-disabled:focus,
+.button-disabled:active {
+    background-color: var(--color-faded-text);
+    cursor: not-allowed;
+    opacity: 0.4;
+}

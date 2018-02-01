@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
+import OroboCookies from '../helpers/cookies';
 import OroboAPI from '../API/api-service';
 import UserAuth from '../API/auth';
 import HomepageInput from './HomepageInput';
@@ -29,6 +30,7 @@ class Login extends Component {
 
   handleSubmit(event) {
     event.preventDefault();
+    const proceedAction = OroboCookies.getCookie('Action');
     
     this.setState({ inProgress: true });
     OroboAPI.loginUser(this.state).then((response) => {
@@ -42,7 +44,17 @@ class Login extends Component {
         UserAuth.authorize();
         
         setTimeout(() => {
-          this.props.history.push('/welcome');
+
+          if (proceedAction) {
+            if (proceedAction.type === 'bill-payment') {
+              this.props.history.push('/pay-bill');
+            } else {
+              this.props.history.push('/send-money');
+            }
+          } else {
+            this.props.history.push('/welcome');  
+          }
+          
         }, 1000);
       } else {
         this.toastr.addNotification({

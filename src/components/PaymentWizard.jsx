@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import Beneficiaries from './Beneficiaries';
 import OroboAPI from '../API/api-service';
+import OroboCookies from '../helpers/cookies';
 import UserAuth from '../API/auth';
 import Duphlux from '../API/duphlux';
 import NotificationSystem from 'react-notification-system';
@@ -15,7 +16,7 @@ import {
   sendPaymentForward
 } from '../actions';
 
-let UserData, serviceFee = 0.00, exchangeAmount = 0.00, exchangeRate = 0.00;
+let UserData, serviceFee = 0.00, exchangeAmount = 0.00, exchangeRate = 0.00, ActionData;
 
 class PaymentWizard extends Component {
   
@@ -61,6 +62,7 @@ class PaymentWizard extends Component {
             }
           }).then((response) => {
             if (response.data.PayLoad.status) {
+              OroboCookies.removeCookie('Action');
               that.props.history.push({
                 pathname: '/payment-success',
                 state: { detail: response.data.PayLoad.data }
@@ -205,6 +207,20 @@ class PaymentWizard extends Component {
   componentDidMount() {
 
     UserData = UserAuth.getUserData();
+    ActionData = OroboCookies.getCookie('Action');
+
+    console.log(ActionData);
+
+    if (ActionData && ActionData.type === 'send-money') {
+      exchangeRate = ActionData.exchange_rate;
+      serviceFee = ActionData.fee;
+      exchangeAmount = 1.00;
+      
+      this.setState({
+        beneficiary_send: ActionData.amount,
+        beneficiary_get: ActionData.receiving
+      });
+    }
     
     OroboAPI.getBeneficiries().then((response) => {
       if (response.data.PayLoad.status) {
@@ -214,7 +230,6 @@ class PaymentWizard extends Component {
       this.setState({ inProgress: false });
     }, (error) => {
       console.log('error');
-      
       this.setState({ inProgress: false });
     });
     

@@ -1,0 +1,41 @@
+.accordion .accordion-title {
+    position: relative;
+    cursor: pointer;
+    color: #0badf2;
+}
+
+.accordion .accordion-title .icon-chevron-down:before {
+    position: absolute;
+    top: 0;
+    right: 0;
+    cursor: pointer;
+    transition: transform 200ms ease-in-out;
+    font-size: 1rem;
+}
+
+.accordion .accordion-title.open .icon-chevron-down:before {
+    transform: rotate(180deg);
+}
+
+.accordion .accordion-body {
+    display: block;
+    margin-left: 0;
+    margin-bottom: 1.5rem;
+}
+
+.accordion.on-large-screens .accordion-title {
+    cursor: auto;
+    color: inherit;
+}
+
+.accordion.on-large-screens .accordion-title .icon-chevron-down {
+    display: none;
+}
+
+.accordion.on-large-screens .accordion-body {
+    display: block !important;
+}
+
+.no-js .accordion .accordion-body {
+    display: block;
+}

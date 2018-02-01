@@ -1,0 +1,45 @@
+.copy-to-clipboard {
+    display: flex;
+    align-items: stretch;
+}
+
+.copy-to-clipboard .to-be-copied {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+    /*border: var(--input-border);
+    border-radius: var(--border-radius);*/
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+   /* color: color(var(--color-brand-blue) lightness(+5%));*/
+    padding-right: 1rem;
+    padding-left: 0.3rem;
+    min-width: 0;
+}
+
+.copy-to-clipboard .to-be-copied > * {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.copy-to-clipboard .button-cta {
+    margin-top: 0;
+    border-bottom-left-radius: 0;
+    border-top-left-radius: 0;
+}
+
+.no-js .copy-to-clipboard .to-be-copied {
+    /*border-radius: var(--border-radius);*/
+}
+
+.no-js .copy-to-clipboard .button-cta {
+    display: none;
+}
+
+#copy-placeholder {
+    position: absolute;
+    top: -9999rem;
+    left: -9999rem;
+}

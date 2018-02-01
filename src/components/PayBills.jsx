@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import OroboAPI from '../API/api-service';
 import Duphlux from '../API/duphlux';
+import OroboCookies from '../helpers/cookies';
 import CurrenciesSelect from './CurrenciesSelect';
 import BillListing from './BillListing';
 import ActiveBillers from './ActiveBillers';
@@ -15,7 +16,7 @@ import {
   payBillBackward
 } from '../actions';
 
-let UserData, sendingAmount, exchangeRate, serviceFee, receivingAmount;
+let UserData, sendingAmount, exchangeRate, serviceFee, receivingAmount, actionData = OroboCookies.getCookie('Action');
 
 class PayBills extends Component {
   constructor(props) {
@@ -82,6 +83,7 @@ class PayBills extends Component {
           OroboAPI.payBill(dataToSend).then((response) => {
 
             if (response.data.PayLoad.status) {
+              OroboCookies.removeCookie('Action');
               that.props.history.push({
                 pathname: '/payment-success',
                 state: { detail: response.data.PayLoad.data }
@@ -245,6 +247,11 @@ class PayBills extends Component {
       break;
 
       case 4: // Pay
+
+        if (actionData && actionData.type === 'bill-payment' && data.bill_options[0].allow_any_amount) {
+          data.bill_options[0].amount = actionData.receiving;
+        }
+
         this.setState({
           step: 5,
           selectedBill: data,
@@ -332,6 +339,7 @@ class PayBills extends Component {
   componentWillMount() {
 
     UserData = UserAuth.getUserData();
+    actionData = OroboCookies.getCookie('Action');
     
     // Get Receiving Currencies
     OroboAPI.getReceivingCurrencies().then((response) => {
@@ -349,6 +357,10 @@ class PayBills extends Component {
               categories: res.data.PayLoad.data.categories,
               inProgress: false
             });
+
+            if (actionData && actionData.type === 'bill-payment') {
+              this.selectOption(actionData.selected_category);
+            }
           }
         }, (err) => {});
 

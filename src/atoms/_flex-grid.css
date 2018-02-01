@@ -1,0 +1,77 @@
+.flex-row {
+    display: block;
+    padding-right: 1.5rem;
+    padding-left: 1.5rem;
+}
+
+.flex-row .flex-row {
+    padding-right: 0;
+    padding-left: 0;
+}
+
+.flex-row + .flex-row {
+    margin-top: 1.5rem;
+}
+
+.flex-column * {
+    margin: 0;
+}
+
+ul.flex-row,
+ol.flex-row,
+ul.flex-column,
+ol.flex-column {
+    padding: 0;
+    margin-bottom: 0;
+    list-style-type: none;
+}
+
+@media screen and (min-width: 1024px) {
+    .flex-row {
+        display: flex;
+        width: 100%;
+        max-width: 75rem;
+        margin-right: auto;
+        margin-left: auto;
+        justify-content: space-between;
+    }
+
+    .flex-column {
+        flex: 1;
+    }
+
+    .flex-row .flex-column + .flex-column {
+        margin-top: 0;
+        margin-left: 1.5rem;
+    }
+
+    .column-1-2 {
+        min-width: calc(100% / 2);
+        max-width: calc(100% / 2);
+    }
+
+    .column-1-3 {
+        min-width: calc(100% / 3);
+        max-width: calc(100% / 3);
+    }
+
+    .column-2-3 {
+        min-width: calc(100% / 3 * 2);
+        max-width: calc(100% / 3 * 2);
+    }
+
+    .column-1-4 {
+        min-width: calc(100% / 4);
+        max-width: calc(100% / 4);
+    }
+
+    .column-3-4 {
+        min-width: calc(100% / 4 * 3);
+        max-width: calc(100% / 4 * 3);
+    }
+
+    .column-1-6 {
+        min-width: calc(100% / 6);
+        max-width: calc(100% / 6);
+    }
+}

@@ -23,7 +23,7 @@ axios.interceptors.request.use(function (config) {
   }
   
   // Encode all data via AES sent to server
-  if (config.data && userData && (config.method === 'post' || config.method === 'put' || config.method === 'delete')) {
+  if (config.url.indexOf('webservice/public/') === -1 && config.data && userData && (config.method === 'post' || config.method === 'put' || config.method === 'delete')) {
     
     if (UserAuth.isAuthenticated) {
       userData = UserAuth.getUserData();
@@ -296,6 +296,22 @@ export default {
     }).catch(function (error) {
       return error;
     });
-  }
+  },
+
+  vendorCategories: function() {
+    return axios.get(CONFIG.PUBLIC_CATEGORIES).then(function (response) {
+      return response;
+    }).catch(function (error) {
+      return error;
+    });
+  },
+
+  vendorFee: function(data) {
+    return axios.post(CONFIG.PUBLIC_FEE, data).then(function (response) {
+      return response;
+    }).catch(function (error) {
+      return error;
+    });
+  },
   
 }

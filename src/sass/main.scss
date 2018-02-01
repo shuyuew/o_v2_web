@@ -11,6 +11,13 @@ body, html {
   min-height: 100%;
 }
 
+#orobo-homepage-wrapper {
+  height: 100%;
+  overflow: hidden;
+  position: relative;
+  font-size: 16px;
+}
+
 body {
   -webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;

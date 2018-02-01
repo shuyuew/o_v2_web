@@ -102,32 +102,40 @@ module.exports = {
       { test: /\.html$/, loader: 'html-loader'},
       {
         test: /\.scss$/,
-        use: ExtractTextPlugin.extract({
-          fallback: 'style-loader',
-          use: [
-            { 'loader': 'css-loader', options: { sourceMap: true, minimize: true } },
-            { 'loader': 'sass-loader', options: { sourceMap: true } }
-          ]
-        })
+        use: [
+          { loader: 'style-loader' },
+          { 'loader': 'css-loader', options: { sourceMap: true } },
+          { 'loader': 'sass-loader', options: { sourceMap: true } }
+        ]
       }
+      // {
+      //   test: /\.scss$/,
+      //   use: ExtractTextPlugin.extract({
+      //     fallback: 'style-loader',
+      //     use: [
+      //       { 'loader': 'css-loader', options: { sourceMap: true } },
+      //       { 'loader': 'sass-loader', options: { sourceMap: true } }
+      //     ]
+      //   })
+      // }
     ]
   },
   
   plugins: [
     new HtmlWebpackPlugin({
-      title: 'Orobo Web App',
+      title: 'Orobo | Transferring Happiness Everyday!',
       template: 'src/index.hbs'
     }),
     new webpack.optimize.CommonsChunkPlugin({
       name: 'common'
     }),
     new webpack.HotModuleReplacementPlugin({}),
-    new ExtractTextPlugin('style.css'),
-    new UglifyJsPlugin({
-      test: /\.js($|\?)/i,
-      cache: true,
-      sourceMap: true
-    })
+    // new ExtractTextPlugin('style.css'),
+    // new UglifyJsPlugin({
+    //   test: /\.js($|\?)/i,
+    //   cache: true,
+    //   sourceMap: true
+    // })
   ]
   
 }

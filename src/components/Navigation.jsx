@@ -36,7 +36,9 @@ class Navigation extends Component {
         
         <div className="orobo-header">
           <div className="text-center">
-            <img src="http://fakeimg.pl/230x87/ededed/27a6df" alt="Logo"/>
+            <a href="/">
+              <img src="/images/dashboard-logo.png" alt="Orobo Logo"/>
+            </a>
           </div>
         </div>
         
