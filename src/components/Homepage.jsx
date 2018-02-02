@@ -527,6 +527,17 @@ class Homepage extends Component {
                         <dl className="accordion flex-row" data-accordion-behaviour="small-screen-only">
                             <div className="flex-column copy">
                                 <dt className="accordion-title">
+                                    Legal
+                                    <span className="icon-chevron-down"></span>
+                                </dt>
+                                <dd className="accordion-body">
+                                    {/* <p><a href="/en/about-us/terms-and-conditions">Terms and conditions</a></p> */}
+                                    <p><a href="/privacy-policy">Privacy policy</a></p>
+                                    {/* <p><a href="/en/about-us/cookies-policy">Cookies policy</a></p> */}
+                                </dd>
+                            </div>
+                            {/* <div className="flex-column copy">
+                                <dt className="accordion-title">
                                     Orobo
                                     <span className="icon-chevron-down"></span>
                                 </dt>
@@ -559,7 +570,7 @@ class Homepage extends Component {
                                     <p><a href="/privacy-policy">Privacy policy</a></p>
                                     <p><a href="/en/about-us/cookies-policy">Cookies policy</a></p>
                                 </dd>
-                            </div>
+                            </div> */}
                             <div className="footer-social flex-column copy">
                                 <dt>Follow us</dt>
                                 <dd className="footer-social-icons">

@@ -1491,11 +1491,14 @@ a.share-button:focus {
 }
 .box-choice {
   margin: 160px 0 60px 160px;
-  width: 25%;
+  max-width: 800px;
   /*position: absolute;
     top: 355pt;*/
   /*padding-left: 5%;*/
   /*width: 29.97%;*/
+}
+.box-choice .btn-group {
+  display: block;
 }
 .box-choice p:nth-child(1) {
   color: #595959;
@@ -1578,7 +1581,6 @@ a.share-button:focus {
 @media (max-width: 1920px) {
   .box-choice {
     margin: 0 0 60px 140px;
-    width: 500px;
   }
   .box-choice button {
     /*width: 10.5em;
@@ -1610,7 +1612,6 @@ a.share-button:focus {
 @media (max-width: 1680px) {
   .box-choice {
     margin: 0 0 60px 120px;
-    width: 550px;
     height: 20%;
   }
   .box-choice button {
@@ -1643,7 +1644,6 @@ a.share-button:focus {
 @media (max-width: 1280px) {
   .box-choice {
     margin: 0 0 0 120px;
-    width: 55%;
   }
   .box-choice button {
     width: 9.5em;
@@ -1880,7 +1880,7 @@ a.share-button:focus {
 .box-choice-tab .account .style-select {
   position: relative;
   background-color: #005266;
-  width: 414px;
+  width: 100% !important;
   height: 90px;
   min-width: 414px;
   /*margin: 50px 33%;*/
@@ -2422,6 +2422,7 @@ a.share-button:focus {
     padding-left: 109px;
     padding-right: 80px;
     background-color: #fff;
+    color: #222;
     border-style: none;
   }
   .box-choice-tab .exchange .exchange-ngn {
@@ -2432,6 +2433,7 @@ a.share-button:focus {
     /*padding-left: 215px;*/
     padding-left: 130px;
     padding-right: 80px;
+    color: #222;
     background-color: #fff;
     border-style: none;
   }
