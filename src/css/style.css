@@ -4004,3 +4004,239 @@ a.share-button:focus {
 .transfer-text {
   color: #46D639;
 }
+
+/* =========================== style for privacy-policy & user agreement page ========================== */
+.orobo-privacy-policy {
+  background-color: #fff;
+  font-size: 16px;
+}
+.navigation-bar {
+  position: absolute;
+  top: 60px;
+  right: 30px;
+  font-family: open-sans;
+}
+.navigation-bar li {
+  display: inline-block;
+  margin-left: 15px;
+}
+.navigation-bar li a {
+  color: #8c8c8c;
+}
+.header-img {
+  margin: 0 auto;
+  max-width: 250px;
+  padding: 20px 0;
+}
+.header-img img {
+  max-width: 100%;
+  height: auto;
+}
+.header-band {
+  margin: 0 auto 20px auto;
+  padding: 20px 0;
+  width: 100%;
+  border-bottom: 1px solid #0badf2;
+  background-color: #e0f4ff;
+}
+.header-band h2 {
+  font-size: 30px;
+  font-family: open-sans;
+  padding-left: 30px;
+  padding-top: 0;
+}
+.context {
+  margin: 0;
+  padding: 0;
+}
+.context .context-container {
+  margin: 0 auto;
+  padding: 50px 200px;
+}
+.context p,
+.context ol,
+.context li,
+.context h2 {
+  font-family: open-sans;
+  font-style: normal;
+  font-weight: 300;
+  font-size: 16px;
+  color: #595959;
+  line-height: 1.8;
+}
+.context ul {
+  padding-left: 20px;
+  list-style: disc;
+  list-style-position: inside;
+}
+.context ol {
+  padding-left: 20px;
+  list-style-position: inside;
+  list-style: decimal;
+}
+.context p,
+.context h2 {
+  margin: 16px 0;
+}
+.context h2 {
+  font-size: 20px;
+  font-weight: bold;
+}
+.context a {
+  text-decoration: none;
+  color: #0badf2;
+}
+.context section {
+  background-color: #fff;
+  border-bottom: 1px dotted #8c8c8c;
+}
+.context section:last-child {
+  border-bottom: none;
+}
+@media (max-width: 900px) {
+  .navigation-bar {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-family: open-sans;
+  }
+  .navigation-bar li {
+    display: inline-block;
+  }
+  .navigation-bar li a {
+    color: #8c8c8c;
+  }
+  .header-img {
+    margin: 0 auto;
+    width: 150px;
+    height: 80px;
+  }
+  .header-img img {
+    height: 80px;
+  }
+  .header-band {
+    margin: 20px auto;
+    padding: 20px 0;
+    width: 100%;
+    border-bottom: 1px solid #0badf2;
+    background-color: #e0f4ff;
+  }
+  .header-band h2 {
+    font-size: 30px;
+    font-family: open-sans;
+    padding-left: 30px;
+    padding-top: 0;
+  }
+  .context {
+    margin: 0;
+    padding: 0;
+  }
+  .context .context-container {
+    margin: 0 auto;
+    padding: 50px 100px;
+  }
+  .context p,
+  .context ol,
+  .context li,
+  .context h2 {
+    font-family: open-sans;
+    font-style: normal;
+    font-weight: 300;
+    font-size: 16px;
+    color: #595959;
+    line-height: 1.5;
+  }
+  .context p,
+  .context h2 {
+    margin: 16px;
+  }
+  .context h2 {
+    font-size: 20px;
+    font-weight: bold;
+  }
+  .context a {
+    text-decoration: none;
+    color: #0badf2;
+  }
+  .context section {
+    background-color: #fff;
+    border-bottom: 1px dotted #8c8c8c;
+  }
+  .context section:last-child {
+    border-bottom: none;
+  }
+}
+@media (max-width: 763px) {
+  .navigation-bar {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-family: open-sans;
+  }
+  .navigation-bar li {
+    display: inline-block;
+  }
+  .navigation-bar li a {
+    color: #8c8c8c;
+  }
+  .header-img {
+    margin: 0 auto;
+    width: 150px;
+    height: 80px;
+  }
+  .header-img img {
+    height: 80px;
+  }
+  .header-band {
+    margin: 20px auto;
+    padding: 20px 0;
+    width: 100%;
+    border-bottom: 1px solid #0badf2;
+    background-color: #e0f4ff;
+  }
+  .header-band h2 {
+    font-size: 30px;
+    font-family: open-sans;
+    padding-left: 30px;
+    padding-top: 0;
+  }
+  .context {
+    margin: 0;
+    padding: 0;
+  }
+  .context .context-container {
+    margin: 0 auto;
+    padding: 50px;
+    min-width: 500px;
+  }
+  .context p,
+  .context ol,
+  .context li,
+  .context h2 {
+    font-family: open-sans;
+    font-style: normal;
+    font-weight: 300;
+    font-size: 16px;
+    color: #595959;
+    line-height: 1.5;
+  }
+  .context p,
+  .context h2 {
+    margin: 16px;
+  }
+  .context h2 {
+    font-size: 20px;
+    font-weight: bold;
+  }
+  .context a {
+    text-decoration: none;
+    color: #0badf2;
+  }
+  .context section {
+    background-color: #fff;
+    border-bottom: 1px dotted #8c8c8c;
+  }
+  .context section:last-child {
+    border-bottom: none;
+  }
+}

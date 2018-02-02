@@ -19,6 +19,7 @@ let store = createStore(oroboApp);
 
 
 // Components
+import PrivacyPolicy from './components/PrivacyPolicy';
 import Homepage from './components/Homepage';
 import Login from './components/Login';
 import Registration from './components/Registration';
@@ -203,6 +204,7 @@ class App extends Component {
                 <Route path="/sign-up" component={Registration}/>
                 <Route exact path="/forgot-password" component={(props) => <ForgotPassword routeData={props} />}/>
                 <Route exact path="/reset-password" component={ResetPassword}/>
+                <Route path="/privacy-policy" component={PrivacyPolicy}/>
                 
                 <PrivateRoute path="/success" component={SuccessfulRegistration}/>
                 <PrivateRoute path="/payment-success" component={PayBillSuccess}/>

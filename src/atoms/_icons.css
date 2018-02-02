@@ -166,6 +166,16 @@
     font-size: 1.5em;
 }
 
+.fa-instagram:before{
+    color: #f0643b;
+    font-size: 1.5em;
+}
+
+.fa-youtube:before{
+    color: #f20c1b;
+    font-size: 1.5em;
+}
+
 /*.icon-messenger:before {
     color: var(--color-fb-messenger-blue);
 }

@@ -183,14 +183,6 @@ class Homepage extends Component {
 
         </nav>
 
-        <div className="side_social_icon">
-          <ul>
-            <li><a href=""><img src="/images/i/icon_facebook.png" alt="Facebook" /></a></li>
-            <li><a href=""><img src="/images/i/icon_youtube.png" alt="Youtube" /></a></li>
-            <li><a href=""><img src="/images/i/icon_ins.png" alt="Instagram" /></a></li>
-            <li><a href="" target="_blank"><img src="/images/i/icon_twitter.png" alt="twitter" /></a></li>
-          </ul>
-        </div>
 
         <div className="parallax">
           <div id="lady-parallax" className="parallax-image"></div>
@@ -564,17 +556,32 @@ class Homepage extends Component {
                                 </dt>
                                 <dd className="accordion-body">
                                     <p><a href="/en/about-us/terms-and-conditions">Terms and conditions</a></p>
-                                    <p><a href="#help/privacy-policy">Privacy policy</a></p>
+                                    <p><a href="/privacy-policy">Privacy policy</a></p>
                                     <p><a href="/en/about-us/cookies-policy">Cookies policy</a></p>
                                 </dd>
                             </div>
                             <div className="footer-social flex-column copy">
                                 <dt>Follow us</dt>
                                 <dd className="footer-social-icons">
-                                    <a href="https://www.facebook.com/worldremit" data-socialfollownetwork="facebook" target="_blank" rel="noopener noreferrer" title="Follow us on Facebook"><span><i className="fa fa-facebook" aria-hidden="true"></i></span></a>
-                                    <a href="https://www.twitter.com/worldremit" data-socialfollownetwork="twitter" target="_blank" rel="noopener noreferrer" title="Follow us on Twitter"><span><i className="fa fa-twitter" aria-hidden="true"></i></span></a>
-                                    <a href="https://plus.google.com/115841455778932378405" data-socialfollownetwork="google+" target="_blank" rel="noopener noreferrer" title="Follow us on Google+"><span><i className="fa fa-google" aria-hidden="true"></i></span></a>
-                                    <a href="https://www.linkedin.com/company/1919522" data-socialfollownetwork="linkedin" target="_blank" rel="noopener noreferrer" title="Follow us on LinkedIn"><span><i className="fa fa-linkedin" aria-hidden="true"></i></span></a>
+                                    <a href="https://www.facebook.com/orobomoney/" data-socialfollownetwork="facebook" target="_blank" rel="noopener noreferrer" title="Follow us on Facebook">
+                                      <span><i className="fa fa-facebook" aria-hidden="true"></i></span>
+                                    </a>
+
+                                    <a href="https://twitter.com/OroboMoney" data-socialfollownetwork="twitter" target="_blank" rel="noopener noreferrer" title="Follow us on Twitter">
+                                      <span><i className="fa fa-twitter" aria-hidden="true"></i></span>
+                                    </a>
+
+                                    <a href="https://www.youtube.com/channel/UC-hG2gVaTNZ4n09Bd3NxnAA" data-socialfollownetwork="youtube" target="_blank" rel="noopener noreferrer" title="Follow us on Youtube">
+                                      <span><i className="fa fa-youtube" aria-hidden="true"></i></span>
+                                    </a>
+
+                                    <a href="https://www.instagram.com/orobomoney/" data-socialfollownetwork="instagram" target="_blank" rel="noopener noreferrer" title="Follow us on Instagram">
+                                      <span><i className="fa fa-instagram" aria-hidden="true"></i></span>
+                                    </a>
+
+                                    <a href="https://www.linkedin.com/company/orobomoney/" data-socialfollownetwork="linkedin" target="_blank" rel="noopener noreferrer" title="Follow us on LinkedIn">
+                                      <span><i className="fa fa-linkedin" aria-hidden="true"></i></span>
+                                    </a>
                                 </dd>
                             </div>
                             {!UserData && 
