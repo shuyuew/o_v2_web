@@ -515,9 +515,9 @@ class Homepage extends Component {
                       125 Village Boulevard, Princeton Forrestal Village<br/>
                       Princeton, New Jersey, 08540</p>
                   <div className="btn-group">
-                      <a href="mailto:info@orobo.com" className="btn btn_apple" target="mailto:info@orobo.com">Request More Info <span></span></a>
+                      <a href="mailto:info@orobo.com" className="btn btn_mailto" target="mailto:info@orobo.com">Request More Info <span></span></a>
                       <a href="" className="btn btn_apple">Download on the App Store</a>
-                      <a href="" className="btn btn_apple">Download for Android</a>
+                      <a href="" className="btn btn_android">Download for Android</a>
                   </div>
                 </div>
               
