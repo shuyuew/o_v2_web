@@ -115,7 +115,8 @@ section#js-video-bg {
 }
 .b-logo {
   display: block;
-  margin: 0 auto 30px;
+  margin: 0 auto 10px;
+  max-width: 280px;
 }
 /* 4. Parallax image
 ============================*/
@@ -333,9 +334,8 @@ section#js-video-bg {
 ========================== */
 .b-outro {
   width: 100%;
-  max-width: 500px;
+  max-width: 900px;
   margin: 0 auto;
-  padding-bottom: 50px;
   text-align: center;
   position: relative;
 }

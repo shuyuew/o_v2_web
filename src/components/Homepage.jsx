@@ -509,7 +509,6 @@ class Homepage extends Component {
 
                 <div className="b-outro">
                   <div><img src="/images/i/logo_white.png" className="b-logo" alt="Image"/></div>
-                  <h1 className="b-title2"></h1>
                   <p className="b-text2"><span className="transfer-text"><br/>We transfer more than money. We transfer happiness :)<br/><br/>
                   Orobo Corporate Offices.</span> <br/>
                       125 Village Boulevard, Princeton Forrestal Village<br/>
