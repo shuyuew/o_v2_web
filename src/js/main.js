@@ -42,8 +42,8 @@ $(function() {
     ============================== */
 
     $('#js-fullpage').fullpage({
-        /*navigation: true,*/
-        /*navigationPosition: 'right',*/
+        navigation: true,
+        navigationPosition: 'right',
         responsive: 900,
         keyboardScrolling: true,
         anchors: ['homepage','paybill','sendmoney','vendors','help'],
