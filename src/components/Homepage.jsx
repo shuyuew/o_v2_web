@@ -54,12 +54,12 @@ class Homepage extends Component {
 
     if (UserData) {
       if (e.target.name === 'PayBillForm') {
-        this.props.history.push('/pay-bill');
+        window.location.href = '/pay-bill';
       } else {
-        this.props.history.push('/send-money');
+        window.location.href = '/send-money';
       }
     } else {
-      this.props.history.push('/login');
+      window.location.href = '/login';
     }
 
   }
@@ -100,12 +100,12 @@ class Homepage extends Component {
 
   getStarted(type) {
     if (!UserData) {
-      this.props.history.push('/login');
+      window.location.href = '/login';
     } else {
       if (type === 'bill-payment') {
-        this.props.history.push('/pay-bill');
+        window.location.href = '/pay-bill';
       } else {
-        this.props.history.push('/send-money');
+        window.location.href = '/send-money';
       }
     }
   }
@@ -142,23 +142,16 @@ class Homepage extends Component {
 
         <nav className="nav-bar">
 
-          <ul id="nav-first">
-              <li><a href="">About</a></li>
-              <li><a href="">Business</a></li>
-              <li><a href="">Services</a></li>
-              <li><a href="">Contact</a></li>
-          </ul>
-
           <div id="nav-dropdown">
             <div className="bar1" ><span></span><span></span><span></span></div>
             <div className="dropdown-content">
                 <a href="#homepage">Home</a>
                 <a href="#paybill">Pay Bill</a>
                 <a href="#sendmoney">Send Money</a>
-                <a href="#vendors">Vendors / Agents</a>
+                {/* <a href="#vendors">Vendors / Agents</a> */}
                 <a href="#help">Help</a>
-                <a href="">Log in</a>
-                <a href="">Sign Up</a>
+                <a href="/login">Log in</a>
+                <a href="/sign-up">Sign Up</a>
             </div>
           </div>
 
@@ -166,15 +159,15 @@ class Homepage extends Component {
             <li><a href="#homepage">Home</a></li>
             <li><a href="#paybill">Pay Bill</a></li>
             <li><a href="#sendmoney">Send Money</a></li>
-            <li><a href="#vendors">Vendors / Agents</a></li>
+            {/* <li><a href="#vendors">Vendors / Agents</a></li> */}
             <li><a href="#help">Help</a></li>
-            {!UserData && <li><Link to="/login">Log In</Link></li> }
+            {!UserData && <li><a href="/login">Log In</a></li> }
             {!UserData && 
               <li className="nav-signup">
                 <div>
-                  <Link to="/sign-up">
+                  <a href="/sign-up">
                     <img className="signup-image" src="/images/i/Orobo_Smile_SignUp.png"/>
-                  </Link>
+                  </a>
                 </div>
               </li>
             }
@@ -390,7 +383,7 @@ class Homepage extends Component {
                 </div>
 
                 <div className="b-content-wrapper">
-                  <div className="badge badge_green">Cross-Border Bill-Payment.</div>
+                  <div className="badge badge_green" onClick={() => { this.getStarted('bill-payment'); }}>Get started</div>
                   <h1 className="b-title">Orobo is a revolutionary App that facilitates cross-border bill payments. </h1>
                   <h1 className="b-title"></h1>
                   <p className="b-text"><em><strong>"Uncle said he paid the school. School said he didn't."</strong></em><br/>
@@ -444,7 +437,7 @@ class Homepage extends Component {
                 </div>
 
                 <div className="b-content-wrapper">
-                  <div className="badge badge_green">Lowest fees!</div>
+                  <div className="badge badge_green" onClick={() => { this.getStarted('bill-payment'); }}>Get started</div>
                   <h1 className="b-title2">A fixed low fee, on any amount. Guaranteed.</h1>
                   <p className="b-text2">Not only will you find our rates to be the ‘LOWEST’ in the market but our unique App allows you to purchase airtime, pay your monthly utility bills, school fees, medical bills, purchase prescription, you can even pay contractors directly to build mom a new house:) </p>
                   <div><img src="/images/i/smile.png" alt="Image"/></div>
@@ -491,7 +484,7 @@ class Homepage extends Component {
                 </div>
 
                 <div className="b-content-wrapper">
-                  <div className="badge badge_green">African Vendors</div>
+                  <div className="badge badge_green" onClick={() => { this.getStarted('bill-payment'); }}>Get started</div>
                   <h1 className="b-title">Thousands of Orobo vetted vendors throughout Africa.</h1>
                   <p className="b-text">The Orobo cross-border bill-payment platform gives you access to thousands of Orobo   vetted vendors throughout Africa and if your vendor isn’t listed simply add them yourself or send     us a <a href="mailto:vendor@orobo.com" className="b-text4">request</a> to add them. <br/>
                     <br/>
@@ -598,7 +591,9 @@ class Homepage extends Component {
                               <div className="footer-locale flex-column copy">
                                   <dt>Sign up</dt>
                                   <dd>
-                                    <Link className="button-cta" to="/sign-up">Sign up</Link>
+                                    <a href="/sign-up" className="button-cta">
+                                      Sign Up
+                                    </a>
                                   </dd>
                               </div>
                             }

@@ -8,4 +8,10 @@
   background-size: cover;
   background-position: center center;
   background-repeat: no-repeat;
+
+  @media only screen and (max-height: 701px) {
+    &.orobo-homepage {
+      position: relative;
+    }
+  }
 }

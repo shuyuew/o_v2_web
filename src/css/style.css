@@ -136,6 +136,8 @@ section#js-video-bg {
   height: 100%;
   top: 0;
   left: 0;
+  background-position: center;
+  background-repeat: no-repeat;
   background-size: cover;
 }
 /* 5 .Containers and Wrappers
@@ -326,6 +328,7 @@ section#js-video-bg {
   font-style: normal;
   font-weight: 600;
   letter-spacing: 0.2px;
+  cursor: pointer;
 }
 .badge_red {
   background: #ee6a56;
@@ -4068,7 +4071,7 @@ a.share-button:focus {
   .context .context-container {
     margin: 0 auto;
     padding: 50px;
-    min-width: 500px;
+    /* min-width: 500px; */
   }
   .context p,
   .context ol,

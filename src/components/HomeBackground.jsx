@@ -10,10 +10,12 @@ class HomeBackground extends Component {
     const TitleRoutes = ['/login', '/forgot-password', '/success'];
     const { location } = this.props;
     let wrapStyle = {};
+    let additionalClass = '';
     
     switch (location.pathname) {
       
       case '/':
+      additionalClass = ' orobo-homepage';
         // wrapStyle.backgroundImage = 'url(http://fakeimg.pl/1400x900/ededed/27a6df)';
       break;
       
@@ -33,7 +35,7 @@ class HomeBackground extends Component {
     }
     
     return (
-      <div className="orobo-home" style={wrapStyle}>
+      <div className={'orobo-home' + additionalClass}>
         
         {TitleRoutes.indexOf(location.pathname) > -1 && 
           <HomeTitle title="Be there" subtitle="Even when you can't." />
