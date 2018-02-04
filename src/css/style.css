@@ -3939,12 +3939,16 @@ a.share-button:focus {
   line-height: 1.5;
 }
 .context p,
-.context h2 {
+.context h2,
+.context h3 {
   margin: 16px;
 }
 .context h2 {
   font-size: 20px;
   font-weight: bold;
+}
+.context h3 {
+  color: #0badf2;
 }
 .context a {
   text-decoration: none;

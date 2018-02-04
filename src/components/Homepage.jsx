@@ -525,6 +525,7 @@ class Homepage extends Component {
                                 <dd className="accordion-body">
                                     {/* <p><a href="/en/about-us/terms-and-conditions">Terms and conditions</a></p> */}
                                     <p><a href="/privacy-policy">Privacy policy</a></p>
+                                    <p><a href="/FAQs">FAQs</a></p>
                                     {/* <p><a href="/en/about-us/cookies-policy">Cookies policy</a></p> */}
                                 </dd>
                             </div>
